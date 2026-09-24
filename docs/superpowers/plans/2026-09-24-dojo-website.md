@@ -16,6 +16,7 @@
 - The initial implementation uses static HTML, CSS, and JavaScript with no framework and no build step.
 - The page must remain understandable and navigable with JavaScript disabled.
 - The visual system uses a warm ivory background, charcoal text, terracotta and muted green accents, serif display typography, and sans-serif body typography.
+- Text colors used on the ivory/paper background must meet at least a 4.5:1 WCAG AA contrast ratio; use `--color-terracotta: #8f3f30` and `--color-sage: #2f634e` for text-bearing accents.
 - The page must expose the sections in this order: Home, Problem, What is DOJO, How it works, Evaluation Planes, Evidence & Readiness, Research, Team, Get Involved, Contact.
 - Claims, metrics, publications, affiliations, and contact details must come from confirmed project material; no invented people, results, or regulatory claims may be added.
 - The first release excludes accounts, live clinical-data access, MCP execution, model uploads, a CMS, and a contact-form backend.
@@ -28,6 +29,7 @@
 - Keyboard-only users must be able to open and close the mobile menu and move through every link and expandable evaluation card; test with Tab, Enter, and Escape.
 - When `prefers-reduced-motion: reduce` is enabled, reveal transitions must be disabled or shortened to an immediate state; test with the browser emulation setting.
 - Unconfirmed team data, contact details, and external publication links must not appear; test the final content against `Contexto/Contexto_reuniones.md` and the approved design spec.
+- Scroll-reveal enhancement must never be the only way content becomes visible; the CSS base state is visible and JavaScript may opt into a hidden-then-revealed animation state.
 
 ---
 
@@ -37,6 +39,10 @@
 - Create: `index.html`
 - Create: `README.md`
 
+**Read before editing:**
+- `/Users/yehu/Documents/DOJO/Contexto/Contexto_reuniones.md`
+- `/Users/yehu/Documents/DOJO/DOJO_ Distributed Open Justice Oversight.docx`
+
 **Interfaces:**
 - Produces the stable section IDs `home`, `problem`, `what-is-dojo`, `how-it-works`, `evaluation-planes`, `evidence-readiness`, `research`, `team`, `get-involved`, and `contact`.
 - Produces navigation links whose `href` values exactly match those IDs.
@@ -44,7 +50,7 @@
 
 - [ ] **Step 1: Create the page skeleton with semantic landmarks and the approved anchor contract**
 
-  Add a `<header>` with a logo/title link, a `<nav aria-label="Primary navigation">`, a `<main>`, ten ordered `<section>` elements, and a `<footer>`. Use this exact navigation order:
+  Set `<html lang="en">`, add `<meta name="viewport" content="width=device-width, initial-scale=1">`, add a keyboard skip link `<a class="skip-link" href="#main">Skip to content</a>`, give `<main>` the matching `id="main"`, and add a `<header>` with a logo/title link, a `<nav aria-label="Primary navigation">`, ten ordered `<section>` elements, and a `<footer>`. Use this exact navigation order:
 
   ```html
   <a href="#home">Home</a>
@@ -67,7 +73,7 @@
 
 - [ ] **Step 3: Add progressive-enhancement hooks without hiding content**
 
-  Add `data-mobile-menu`, `data-mobile-menu-toggle`, `data-reveal`, and `data-plane-card` attributes only where the script will enhance behavior. Keep the mobile navigation links in the DOM and avoid using `hidden` on content that must work without JavaScript.
+  Add `data-mobile-menu`, `data-mobile-menu-toggle`, and `data-reveal` attributes only where the script will enhance behavior. Keep the mobile navigation links in the DOM and avoid using `hidden` on content that must work without JavaScript. Use native `<details>`/`<summary>` for evaluation-plane cards; do not add an unused card-specific data attribute.
 
 - [ ] **Step 4: Add local preview instructions to `README.md`**
 
@@ -111,7 +117,25 @@
 
 - [ ] **Step 1: Add the stylesheet link and global visual tokens**
 
-  Link the stylesheet in `<head>` and define these tokens in `:root`: `--color-ivory: #f5f1eb`, `--color-paper: #fffdf9`, `--color-ink: #25221f`, `--color-muted: #6e6861`, `--color-terracotta: #b6533e`, `--color-sage: #4e8068`, `--color-line: #d8d0c7`, `--font-display: Georgia, 'Times New Roman', serif`, and `--font-body: Inter, ui-sans-serif, system-ui, sans-serif`.
+  Link the stylesheet in `<head>`, load Inter with these exact tags, and define these tokens in `:root`:
+
+  ```html
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  ```
+
+  ```css
+  --color-ivory: #f5f1eb;
+  --color-paper: #fffdf9;
+  --color-ink: #25221f;
+  --color-muted: #6e6861;
+  --color-terracotta: #8f3f30;
+  --color-sage: #2f634e;
+  --color-line: #d8d0c7;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: Inter, ui-sans-serif, system-ui, sans-serif;
+  ```
 
 - [ ] **Step 2: Build the desktop layout and section hierarchy**
 
@@ -127,7 +151,7 @@
 
 - [ ] **Step 5: Add accessibility and motion rules**
 
-  Define `:focus-visible` outlines, visible link states, sufficient line height, `scroll-margin-top` for sections, and this reduced-motion rule:
+  Define `.skip-link` positioning, `:focus-visible` outlines, visible link states, sufficient line height, `scroll-margin-top` for sections, and this reduced-motion rule:
 
   ```css
   @media (prefers-reduced-motion: reduce) {
@@ -139,6 +163,10 @@
     }
   }
   ```
+
+  Keep `[data-reveal]` visible by default. Only when JavaScript adds a `js-enabled` class to `<html>` may CSS apply the initial hidden transform, and `is-visible` must restore opacity and transform. With JavaScript disabled, no selector may set reveal content to `opacity: 0` or `visibility: hidden`.
+
+  Verify the selected text colors against `--color-ivory` and `--color-paper` with a deterministic contrast calculation; both text-bearing accent colors must be at least 4.5:1.
 
 - [ ] **Step 6: Run visual smoke checks**
 
@@ -159,7 +187,7 @@
 - Modify: `styles.css`
 
 **Interfaces:**
-- `initMobileMenu()` controls the mobile navigation through `data-mobile-menu` and `data-mobile-menu-toggle`.
+- `initMobileMenu()` controls the mobile navigation through `data-mobile-menu` and `data-mobile-menu-toggle`, returns focus to the toggle after Escape or programmatic close, and updates `aria-expanded`.
 - `initScrollReveal()` enhances elements marked with `data-reveal` without hiding them before initialization.
 - Native `<details>` elements handle evaluation-plane expansion; JavaScript must not be required for their operation.
 
@@ -175,7 +203,7 @@
   function initMobileMenu() {}
   ```
 
-  The function must toggle `aria-expanded`, add/remove an `is-open` class, close the menu after a navigation link is activated, close it on `Escape`, and leave the menu usable if JavaScript is unavailable. The toggle button must have an accessible label and `aria-controls` pointing to the navigation container.
+  The function must toggle `aria-expanded`, add/remove an `is-open` class, close the menu after a navigation link is activated, close it on `Escape`, return focus to the toggle after Escape or close, and leave the menu usable if JavaScript is unavailable. The toggle button must have an accessible label and `aria-controls` pointing to the navigation container.
 
 - [ ] **Step 3: Implement progressive scroll reveal**
 
@@ -185,7 +213,7 @@
   function initScrollReveal() {}
   ```
 
-  Add an `is-visible` class using `IntersectionObserver` when available. If the API is unavailable or the user requests reduced motion, add `is-visible` immediately. Do not remove content from the accessibility tree while it is waiting to reveal.
+  Add `js-enabled` to `<html>` at script evaluation time, then add an `is-visible` class using `IntersectionObserver` when available. If the API is unavailable or the user requests reduced motion, add `is-visible` immediately. The base CSS state must remain visible when `js-enabled` is absent, so disabling JavaScript cannot hide content. Do not remove content from the accessibility tree while it is waiting to reveal.
 
 - [ ] **Step 4: Initialize only after the document is ready**
 
@@ -203,7 +231,8 @@
   Run:
 
   ```bash
-  node --check script.js
+  NODE_BIN=/Users/yehu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node
+  "$NODE_BIN" --check script.js
   git diff --check
   ```
 
@@ -222,8 +251,13 @@
 - Modify: `index.html`
 - Modify: `README.md`
 
+**Read before editing:**
+- `/Users/yehu/Documents/DOJO/Contexto/Contexto_reuniones.md`
+- `/Users/yehu/Documents/DOJO/DOJO_ Distributed Open Justice Oversight.docx`
+
 **Interfaces:**
 - All external links in the site must have descriptive accessible labels and use confirmed destinations.
+- External links opened in a new tab must include `target="_blank" rel="noopener noreferrer"`.
 - The Team section must remain role-based until names and affiliations are explicitly supplied by the project owners.
 
 - [ ] **Step 1: Replace draft copy with source-backed DOJO language**
@@ -232,7 +266,7 @@
 
 - [ ] **Step 2: Add research cards with confirmed links**
 
-  Include cards for adversarial evaluation, clinical implementation/readiness, and human-AI oversight. Link only to URLs present in the approved context, including the SALIENT DOI, DECIDE-AI DOI, FUTURE-AI DOI, and the DOJO GitHub repository where relevant.
+  Include cards for adversarial evaluation, clinical implementation/readiness, and human-AI oversight. Use only these confirmed initial destinations unless the source documents provide an approved replacement: `https://github.com/criticaldata/dojo`, `https://criticaldata.mit.edu`, `https://doi.org/10.1093/jamia/ocad088` (SALIENT), `https://doi.org/10.1038/s41591-022-01772-9` (DECIDE-AI), and `https://doi.org/10.1136/bmj-2024-081554` (FUTURE-AI).
 
 - [ ] **Step 3: Make Team and Contact accurate without inventing details**
 
@@ -264,12 +298,18 @@
 ### Task 5: Perform release QA and prepare GitHub Pages publication
 
 **Files:**
+- Modify: `index.html`
 - Modify: `README.md`
 - Create: `.nojekyll`
+- Create: `scripts/qa.mjs`
+- Create: `favicon.svg`
+- Create: `404.html`
+- Create: `robots.txt`
 
 **Interfaces:**
 - The repository root contains `index.html` as the GitHub Pages entry point.
 - The README documents the local preview and the expected static hosting setup.
+- `scripts/qa.mjs` runs automated browser smoke checks against a local HTTP server.
 
 - [ ] **Step 1: Run structural checks from the repository root**
 
@@ -285,18 +325,45 @@
   test -f index.html
   test -f styles.css
   test -f script.js
-  node --check script.js
+  test -f favicon.svg
+  test -f 404.html
+  test -f robots.txt
+  NODE_BIN=/Users/yehu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node
+  "$NODE_BIN" --check script.js
   rg -n 'href="#[^"]+"' index.html
   git diff --check
   ```
 
   Expected: all required files exist, JavaScript parses, anchor links are present, and Git reports no whitespace errors.
 
-- [ ] **Step 2: Run the responsive and accessibility checklist**
+- [ ] **Step 2: Add automated browser smoke checks**
+
+  Create `scripts/qa.mjs` using the bundled Playwright package. The script must launch Chromium headlessly, visit `http://127.0.0.1:4173/`, assert `html[lang="en"]`, the viewport meta tag, the skip link, the ten section IDs in order, unique IDs, valid internal anchor targets, the presence of three native `<details>` cards, the `target`/`rel` contract for new-tab links, and no horizontal overflow at a `320px` viewport. It must click the mobile-menu toggle, assert `aria-expanded="true"`, press Escape, assert `aria-expanded="false"`, and close the browser in a `finally` block.
+
+  Run it with the workspace Node runtime:
+
+  ```bash
+  NODE_BIN=/Users/yehu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node
+  NODE_PATH=/Users/yehu/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules "$NODE_BIN" scripts/qa.mjs
+  ```
+
+  Expected: the script exits with code 0 and prints one line per assertion group.
+
+- [ ] **Step 3: Verify contrast with a deterministic check**
+
+  Run a small Python calculation using the WCAG relative-luminance formula and assert that `#8f3f30` and `#2f634e` each reach at least 4.5:1 against both `#f5f1eb` and `#fffdf9`. The command must exit non-zero if any ratio is below 4.5.
+
+- [ ] **Step 4: Add the low-cost publication and discovery files**
+
+  Create `favicon.svg` as a simple DOJO monogram using the approved colors, `404.html` with a clear recovery link back to `index.html`, and `robots.txt` containing `User-agent: *` and `Allow: /`. Link `favicon.svg` from both `index.html` and `404.html`.
+
+- [ ] **Step 5: Run the responsive and accessibility checklist**
 
   Serve the site with `python3 -m http.server 4173` and verify desktop, 760px, 420px, and 320px layouts. Test mouse and keyboard navigation, JavaScript-disabled rendering, reduced motion, focus visibility, native details expansion, external links, and the absence of horizontal overflow.
 
-- [ ] **Step 3: Check the repository for sensitive or irrelevant files**
+  With VoiceOver or the browser accessibility tree enabled, move through the page landmarks and confirm that the skip link, navigation label, mobile-menu label, section headings, details summaries, and external-link names are announced meaningfully.
+
+- [ ] **Step 6: Check the repository for sensitive or irrelevant files**
 
   Run:
 
@@ -307,20 +374,20 @@
 
   Expected: only the intended static site, documentation, and approved assets are present; no secrets or clinical data are found.
 
-- [ ] **Step 4: Document GitHub Pages setup**
+- [ ] **Step 7: Document GitHub Pages setup**
 
   Add to `README.md` that GitHub Pages should serve the repository root from the `main` branch, then verify the resulting public URL after an organization owner enables Pages if the setting is not available to the current account.
 
-- [ ] **Step 5: Commit the release-ready state**
+- [ ] **Step 8: Commit the release-ready state**
 
   ```bash
-  git add README.md .nojekyll
+  git add README.md .nojekyll scripts/qa.mjs favicon.svg 404.html robots.txt index.html
   git commit -m "docs: prepare DOJO website for GitHub Pages"
   ```
 
 ## Self-review result
 
 - Spec coverage: every approved section, visual requirement, interaction, content rule, accessibility requirement, and scope boundary maps to Tasks 1–5.
-- Placeholder scan: the plan contains no `TBD`, `TODO`, or unspecified implementation steps; Team and Contact behavior are explicitly role-based and source-backed.
+- Review corrections: the plan explicitly handles no-JavaScript visibility, removes the unused `data-plane-card` hook, sets AA-safe text colors, loads Inter, returns focus on menu close, adds a skip link, declares language/viewport metadata, names source documents, hardens new-tab links, and adds Playwright/contrast QA.
 - Interface consistency: the section IDs, data attributes, JavaScript function names, and file responsibilities are consistent across tasks.
 - Review focus coverage: each of the five review risks appears in the global checklist and is tested by Tasks 1–5.
