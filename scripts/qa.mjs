@@ -15,6 +15,7 @@ const expectedSections = [
 
 const html = await readFile('index.html', 'utf8');
 const css = await readFile('styles.css', 'utf8');
+const script = await readFile('script.js', 'utf8');
 const sectionIds = [...html.matchAll(/<section[^>]*\bid="([^"]+)"/g)].map((match) => match[1]);
 const internalLinks = [...html.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]);
 
@@ -52,4 +53,16 @@ if (!css.includes('html.js-enabled [data-reveal].is-visible')) {
   throw new Error('Reveal styles must restore visible state with .is-visible');
 }
 
-console.log('PASS structural section, navigation, and visual token assertions');
+for (const hook of [
+  'function initMobileMenu',
+  'function initScrollReveal',
+  "classList.add('js-enabled')",
+  'IntersectionObserver',
+  "addEventListener('DOMContentLoaded'",
+]) {
+  if (!script.includes(hook)) {
+    throw new Error(`Missing progressive enhancement hook: ${hook}`);
+  }
+}
+
+console.log('PASS structure, visual tokens, and progressive enhancement assertions');
