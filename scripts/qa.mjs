@@ -65,4 +65,16 @@ for (const hook of [
   }
 }
 
-console.log('PASS structure, visual tokens, and progressive enhancement assertions');
+for (const contentMarker of [
+  'Experimental Model',
+  'Technical System',
+  'Clinical Solution',
+  'https://doi.org/10.1136/bmj-2024-081554',
+  'regulatory approval',
+]) {
+  if (!html.includes(contentMarker)) {
+    throw new Error(`Missing source-backed content marker: ${contentMarker}`);
+  }
+}
+
+console.log('PASS structure, visual tokens, progressive enhancement, and content assertions');
