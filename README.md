@@ -17,3 +17,7 @@ Then open [http://127.0.0.1:4173/](http://127.0.0.1:4173/).
 The first release is a static HTML, CSS, and JavaScript site. It does not contain clinical data, credentials, API keys, or live evaluation services. Never commit those materials to this repository.
 
 The site is intended for GitHub Pages or another static host. It describes the evaluation concept and contribution model; it does not claim regulatory approval, universal clinical safety, or patient-outcome benefit.
+
+## GitHub Pages
+
+Configure GitHub Pages to publish the repository root from the `main` branch. The root `index.html`, `.nojekyll`, `404.html`, and `robots.txt` files are included for that static deployment path.
