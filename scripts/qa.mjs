@@ -58,6 +58,7 @@ for (const token of [
   '--color-terracotta: #8f3f30',
   '--color-sage: #2f634e',
   '--color-line: #d8d0c7',
+  '--color-soft-gray: #e6e0d8',
   '--font-display: Georgia',
   '--font-body: Inter',
 ]) {
@@ -93,11 +94,23 @@ assert(css.includes('.signal-orbit::before'), 'Hero orbit needs additional satel
 assert(/\.signal-orbit\s*\{\s*animation:\s*none !important;/.test(css), 'Reduced motion must disable orbital animation');
 
 const anatomyMarks = [...html.matchAll(/data-anatomy-mark="([^"]+)"/g)].map((match) => match[1]);
-for (const mark of ['brain', 'heart-lungs', 'spine', 'torso', 'hand', 'foot']) {
+for (const mark of ['eye', 'brain', 'heart', 'hands', 'thorax', 'legs']) {
   assert(anatomyMarks.includes(mark), `Missing native anatomy mark: ${mark}`);
 }
 assert(anatomyMarks.length >= 6, 'Page needs a head-to-feet anatomy sequence');
 assert((html.match(/<svg\b/g) ?? []).length >= 6, 'Anatomy marks must use native SVG');
+for (const [sectionId, mark] of Object.entries({
+  'what-is-dojo': 'brain',
+  'how-it-works': 'heart',
+  'evaluation-planes': 'hands',
+  'evidence-readiness': 'thorax',
+  research: 'legs',
+})) {
+  const section = html.match(new RegExp(`<section[^>]*id="${sectionId}"[\\s\\S]*?<\\/section>`))?.[0] ?? '';
+  assert(section.includes(`data-anatomy-mark="${mark}"`), `Section ${sectionId} needs anatomy mark ${mark}`);
+}
+assert(html.includes('anatomy-detail'), 'Anatomy marks need internal detail lines');
+assert(html.includes('anatomy-hatch'), 'Anatomy marks need engraved hatching');
 assert(/\.anatomy-mark\s*\{[\s\S]*?position:\s*absolute/.test(css), 'Anatomy marks must be decorative positioned elements');
 assert(css.includes('@keyframes anatomy-float'), 'Anatomy marks need a subtle float animation');
 assert(/\.anatomy-mark\s*\{[\s\S]*?animation:\s*none !important;/.test(css), 'Reduced motion must disable anatomy animation');
