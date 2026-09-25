@@ -370,21 +370,36 @@ p {
   position: absolute;
   border: 1px solid var(--color-line);
   border-radius: 50%;
+  pointer-events: none;
   transform: rotate(-16deg);
 }
 
+.signal-orbit::before,
 .signal-orbit::after {
   position: absolute;
-  width: 0.65rem;
-  height: 0.65rem;
+  width: 0.58rem;
+  height: 0.58rem;
   border-radius: 50%;
-  background: var(--color-terracotta);
   content: '';
+}
+
+.signal-orbit::before {
+  background: var(--color-sage);
+}
+
+.signal-orbit::after {
+  background: var(--color-terracotta);
 }
 
 .signal-orbit--outer {
   width: min(100%, 395px);
   aspect-ratio: 1;
+  animation: signal-spin-outer 26s linear infinite;
+}
+
+.signal-orbit--outer::before {
+  bottom: 8%;
+  left: 13%;
 }
 
 .signal-orbit--outer::after {
@@ -392,17 +407,62 @@ p {
   right: 12%;
 }
 
+.signal-orbit--middle {
+  width: min(90%, 350px);
+  aspect-ratio: 1;
+  border-color: rgb(143 63 48 / 42%);
+  transform: rotate(19deg);
+  animation: signal-spin-middle 19s linear infinite reverse;
+}
+
+.signal-orbit--middle::before {
+  top: 50%;
+  left: -0.3rem;
+}
+
+.signal-orbit--middle::after {
+  right: 8%;
+  bottom: 7%;
+  width: 0.46rem;
+  height: 0.46rem;
+}
+
 .signal-orbit--inner {
   width: min(76%, 300px);
   aspect-ratio: 1;
   border-color: var(--color-sage);
   transform: rotate(42deg);
+  animation: signal-spin-inner 13s linear infinite;
+}
+
+.signal-orbit--inner::before {
+  top: 14%;
+  right: 6%;
+  width: 0.44rem;
+  height: 0.44rem;
 }
 
 .signal-orbit--inner::after {
   bottom: 14%;
   left: 7%;
+  width: 0.48rem;
+  height: 0.48rem;
   background: var(--color-sage);
+}
+
+@keyframes signal-spin-outer {
+  from { transform: rotate(-16deg); }
+  to { transform: rotate(344deg); }
+}
+
+@keyframes signal-spin-middle {
+  from { transform: rotate(19deg); }
+  to { transform: rotate(-341deg); }
+}
+
+@keyframes signal-spin-inner {
+  from { transform: rotate(42deg); }
+  to { transform: rotate(402deg); }
 }
 
 .signal-core {
@@ -414,7 +474,7 @@ p {
   gap: 0.25rem;
   border-radius: 50%;
   color: var(--color-paper);
-  background: var(--color-ink);
+  background: var(--color-terracotta);
   box-shadow: var(--shadow-soft);
   font-size: 0.63rem;
   font-weight: 700;
@@ -423,7 +483,7 @@ p {
 }
 
 .signal-core strong {
-  color: var(--color-terracotta);
+  color: var(--color-paper);
   font-family: var(--font-display);
   font-size: 1.2rem;
   font-weight: 400;
@@ -1045,5 +1105,9 @@ html.js-enabled [data-reveal].is-visible {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+  .signal-orbit {
+    animation: none !important;
   }
 }

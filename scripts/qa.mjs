@@ -86,6 +86,12 @@ for (const contentMarker of [
   assert(html.includes(contentMarker), `Missing source-backed content marker: ${contentMarker}`);
 }
 
+assert((html.match(/class="signal-orbit[^\"]*"/g) ?? []).length >= 3, 'Hero needs at least three orbital rings');
+assert((css.match(/@keyframes signal-spin-/g) ?? []).length === 3, 'Hero needs three named orbital animations');
+assert(/\.signal-core\s*\{[\s\S]*?background:\s*var\(--color-terracotta\)/.test(css), 'Hero core must use the Explore DOJO terracotta');
+assert(css.includes('.signal-orbit::before'), 'Hero orbit needs additional satellite dots');
+assert(/\.signal-orbit\s*\{\s*animation:\s*none !important;/.test(css), 'Reduced motion must disable orbital animation');
+
 console.log('PASS static structure, accessibility metadata, and anchor assertions');
 console.log('PASS visual tokens, progressive enhancement, and source-backed content assertions');
 
