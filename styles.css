@@ -204,7 +204,14 @@ section {
 }
 
 .section {
+  position: relative;
+  overflow: clip;
   padding: 7.5rem 0;
+}
+
+.section > .container {
+  position: relative;
+  z-index: 1;
 }
 
 .section--hero {
@@ -230,6 +237,97 @@ section {
 
 .section--team {
   background: var(--color-soft-sage);
+}
+
+.anatomy-mark {
+  position: absolute;
+  z-index: 0;
+  display: block;
+  width: clamp(96px, 12vw, 170px);
+  height: auto;
+  overflow: visible;
+  color: var(--color-terracotta);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  opacity: 0.2;
+  pointer-events: none;
+  animation: anatomy-float 12s ease-in-out infinite;
+}
+
+.anatomy-mark--brain {
+  top: 8%;
+  right: 2.5%;
+  width: clamp(110px, 14vw, 180px);
+  animation-delay: -2s;
+}
+
+.anatomy-mark--eye {
+  right: 2%;
+  bottom: 9%;
+  color: var(--color-sage);
+  width: clamp(112px, 13vw, 160px);
+  animation-delay: -7s;
+}
+
+.anatomy-mark--heart-lungs {
+  top: 22%;
+  left: 2%;
+  width: clamp(112px, 13vw, 155px);
+  animation-duration: 15s;
+}
+
+.anatomy-mark--spine {
+  top: 15%;
+  right: 2.5%;
+  color: var(--color-terracotta);
+  width: clamp(72px, 8vw, 100px);
+  opacity: 0.24;
+  animation-duration: 17s;
+  animation-delay: -5s;
+}
+
+.anatomy-mark--torso {
+  right: 1.5%;
+  bottom: 8%;
+  color: var(--color-sage);
+  width: clamp(110px, 14vw, 170px);
+  animation-duration: 14s;
+  animation-delay: -9s;
+}
+
+.anatomy-mark--hand {
+  top: 17%;
+  right: 2.5%;
+  width: clamp(92px, 11vw, 135px);
+  animation-duration: 16s;
+  animation-delay: -4s;
+}
+
+.anatomy-mark--foot {
+  right: 3%;
+  bottom: 7%;
+  color: var(--color-sage);
+  width: clamp(92px, 11vw, 135px);
+  animation-duration: 13s;
+  animation-delay: -10s;
+}
+
+.section--workflow .anatomy-mark {
+  color: var(--color-soft-terracotta);
+}
+
+@keyframes anatomy-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(2deg);
+  }
 }
 
 .section-heading {
@@ -1007,6 +1105,33 @@ html.js-enabled [data-reveal].is-visible {
     min-height: 315px;
   }
 
+  .anatomy-mark--eye,
+  .anatomy-mark--spine,
+  .anatomy-mark--torso,
+  .anatomy-mark--hand {
+    display: none;
+  }
+
+  .anatomy-mark {
+    width: 92px;
+    opacity: 0.12;
+  }
+
+  .anatomy-mark--brain {
+    top: 4%;
+    right: 0.75rem;
+  }
+
+  .anatomy-mark--heart-lungs {
+    top: 14%;
+    left: 0.75rem;
+  }
+
+  .anatomy-mark--foot {
+    right: 0.75rem;
+    bottom: 4%;
+  }
+
   .hero__signal > p {
     right: 4%;
   }
@@ -1108,6 +1233,10 @@ html.js-enabled [data-reveal].is-visible {
   }
 
   .signal-orbit {
+    animation: none !important;
+  }
+
+  .anatomy-mark {
     animation: none !important;
   }
 }

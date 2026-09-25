@@ -92,6 +92,16 @@ assert(/\.signal-core\s*\{[\s\S]*?background:\s*var\(--color-terracotta\)/.test(
 assert(css.includes('.signal-orbit::before'), 'Hero orbit needs additional satellite dots');
 assert(/\.signal-orbit\s*\{\s*animation:\s*none !important;/.test(css), 'Reduced motion must disable orbital animation');
 
+const anatomyMarks = [...html.matchAll(/data-anatomy-mark="([^"]+)"/g)].map((match) => match[1]);
+for (const mark of ['brain', 'heart-lungs', 'spine', 'torso', 'hand', 'foot']) {
+  assert(anatomyMarks.includes(mark), `Missing native anatomy mark: ${mark}`);
+}
+assert(anatomyMarks.length >= 6, 'Page needs a head-to-feet anatomy sequence');
+assert((html.match(/<svg\b/g) ?? []).length >= 6, 'Anatomy marks must use native SVG');
+assert(/\.anatomy-mark\s*\{[\s\S]*?position:\s*absolute/.test(css), 'Anatomy marks must be decorative positioned elements');
+assert(css.includes('@keyframes anatomy-float'), 'Anatomy marks need a subtle float animation');
+assert(/\.anatomy-mark\s*\{[\s\S]*?animation:\s*none !important;/.test(css), 'Reduced motion must disable anatomy animation');
+
 console.log('PASS static structure, accessibility metadata, and anchor assertions');
 console.log('PASS visual tokens, progressive enhancement, and source-backed content assertions');
 
