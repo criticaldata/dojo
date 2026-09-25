@@ -4,7 +4,9 @@ The public DOJO website explains Distributed Open Justice Oversight, an open and
 
 The single-page site moves through the project problem, DOJO's evaluation approach, the Data/Model/Clinical Workflow planes, Evidence & Readiness, research, team roles, contribution routes, and contact through the public repository.
 
-## Local preview
+The complete public website is live at [criticaldata.github.io/dojo](https://criticaldata.github.io/dojo/).
+
+## Run locally
 
 From the repository root, run:
 
@@ -14,10 +16,10 @@ python3 -m http.server 4173
 
 Then open [http://127.0.0.1:4173/](http://127.0.0.1:4173/).
 
-The first release is a static HTML, CSS, and JavaScript site. It does not contain clinical data, credentials, API keys, or live evaluation services. Never commit those materials to this repository.
+This is a static HTML, CSS, and JavaScript website. It does not contain clinical data, credentials, API keys, or live evaluation services. Never commit those materials to this repository.
 
-The site is intended for GitHub Pages or another static host. It describes the evaluation concept and contribution model; it does not claim regulatory approval, universal clinical safety, or patient-outcome benefit.
+The live site is a static HTML, CSS, and JavaScript website. It describes the evaluation concept and contribution model; it does not claim regulatory approval, universal clinical safety, or patient-outcome benefit.
 
 ## GitHub Pages
 
-Configure GitHub Pages to publish the repository root from the `main` branch. The root `index.html`, `.nojekyll`, `404.html`, and `robots.txt` files are included for that static deployment path.
+GitHub Pages publishes the repository root from the `feat/dojo-website-native` branch. Pushing updates to that branch updates the public site. The root `index.html`, `.nojekyll`, `404.html`, and `robots.txt` files support this deployment.

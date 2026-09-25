@@ -266,28 +266,29 @@ section {
 }
 
 .anatomy-mark--eye {
-  right: -7%;
-  bottom: -8%;
-  color: var(--color-muted);
-  width: clamp(320px, 46vw, 580px);
-  opacity: 0.25;
+  right: -10%;
+  top: 25%;
+  color: var(--color-terracotta);
+  width: clamp(300px, 38vw, 470px);
+  opacity: 0.2;
   animation-delay: -7s;
 }
 
 .anatomy-mark--brain {
-  left: -13%;
-  bottom: -22%;
-  width: clamp(470px, 62vw, 780px);
-  opacity: 0.29;
+  left: auto;
+  right: -9%;
+  bottom: -18%;
+  width: clamp(390px, 50vw, 630px);
+  opacity: 0.21;
   animation-duration: 15s;
   animation-delay: -2s;
 }
 
 .anatomy-mark--heart {
-  top: -8%;
-  right: -9%;
-  width: clamp(430px, 56vw, 700px);
-  opacity: 0.32;
+  top: -5%;
+  right: -14%;
+  width: clamp(370px, 48vw, 600px);
+  opacity: 0.28;
   animation-duration: 14s;
   animation-delay: -4s;
 }
@@ -302,19 +303,19 @@ section {
 }
 
 .anatomy-mark--thorax {
-  right: -11%;
-  top: -9%;
-  width: clamp(440px, 59vw, 740px);
-  opacity: 0.24;
+  right: -16%;
+  top: -5%;
+  width: clamp(370px, 48vw, 600px);
+  opacity: 0.18;
   animation-duration: 15s;
   animation-delay: -8s;
 }
 
 .anatomy-mark--legs {
-  right: -8%;
-  top: -8%;
-  width: clamp(440px, 58vw, 730px);
-  opacity: 0.25;
+  right: -12%;
+  top: 1%;
+  width: clamp(390px, 50vw, 630px);
+  opacity: 0.18;
   animation-duration: 17s;
   animation-delay: -10s;
 }
@@ -323,19 +324,25 @@ section {
   stroke-width: 2.6;
 }
 
+.anatomy-mark .anatomy-shade {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.16;
+}
+
 .anatomy-mark .anatomy-detail {
   stroke-width: 1.45;
   opacity: 0.88;
 }
 
 .anatomy-mark .anatomy-hatch {
-  stroke-width: 0.8;
-  opacity: 0.55;
+  stroke-width: 0.9;
+  opacity: 0.68;
 }
 
 .section--workflow .anatomy-mark {
   color: #d99480;
-  opacity: 0.42;
+  opacity: 0.34;
 }
 
 @keyframes anatomy-float {
@@ -1131,7 +1138,10 @@ html.js-enabled [data-reveal].is-visible {
 
   .anatomy-mark--eye {
     right: -8%;
-    bottom: 1%;
+    top: auto;
+    bottom: 4%;
+    width: min(76vw, 390px);
+    opacity: 0.14;
   }
 
   .anatomy-mark--hands {
@@ -1146,22 +1156,25 @@ html.js-enabled [data-reveal].is-visible {
 
   .anatomy-mark--brain {
     left: auto;
-    bottom: -1%;
-    right: -10%;
+    bottom: -3%;
+    right: -12%;
+    opacity: 0.15;
   }
 
   .anatomy-mark--heart {
     top: 8%;
-    right: -10%;
+    right: -14%;
+    opacity: 0.22;
   }
 
   .anatomy-mark--legs {
-    right: -10%;
+    right: -13%;
     top: 3%;
+    opacity: 0.14;
   }
 
   .section--workflow .anatomy-mark {
-    opacity: 0.27;
+    opacity: 0.22;
   }
 
   .hero__signal > p {
