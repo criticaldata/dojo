@@ -87,6 +87,10 @@ for (const contentMarker of [
 
 assert(!html.includes('Eight papers behind'), 'Bibliography title should not expose a paper count');
 
+const mitCriticalDataMarks = html.match(/data-institutional-mark="mit-critical-data"/g) ?? [];
+assert(mitCriticalDataMarks.length === 4, 'MIT Critical Data mark should appear in the header, two section introductions, and footer');
+assert((html.match(/assets\/mit-critical-data\.png/g) ?? []).length === 4, 'MIT Critical Data asset should be used in each institutional mark');
+
 assert((html.match(/class="signal-orbit[^\"]*"/g) ?? []).length >= 3, 'Hero needs at least three orbital rings');
 assert((css.match(/@keyframes signal-spin-/g) ?? []).length === 3, 'Hero needs three named orbital animations');
 assert(/\.signal-core\s*\{[\s\S]*?background:\s*var\(--color-terracotta\)/.test(css), 'Hero core must use the Explore DOJO terracotta');
