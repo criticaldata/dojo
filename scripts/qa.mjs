@@ -34,7 +34,7 @@ for (const id of internalLinks) {
 assert(/<html\s+lang="en">/.test(html), 'Document language must be en');
 assert(/<meta\s+name="viewport"\s+content="width=device-width, initial-scale=1">/.test(html), 'Viewport meta tag is missing');
 assert(/<a\s+class="skip-link"\s+href="#main">/.test(html), 'Skip link is missing');
-assert((html.match(/<details\b/g) ?? []).length === 0, 'Compact architecture should not require expandable details cards');
+assert((html.match(/<details\b/g) ?? []).length === 7, 'Bibliography should include seven expandable references after the DOJO paper');
 
 for (const anchor of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) {
   assert(/rel="[^"]*noopener[^"]*noreferrer[^"]*"/.test(anchor[0]), 'Unsafe new-tab link: ' + anchor[0]);
@@ -74,7 +74,11 @@ for (const contentMarker of [
   'Model plane',
   'Clinical workflow',
   'Evidence object',
-  'Selected research',
+  'DOJO bibliography',
+  'Distributed Open Justice Oversight (DOJO): A Community-Driven, Modality-Agnostic Platform for Adversarial Evaluation of Health AI',
+  'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6676818',
+  'Machine learning in medicine',
+  'Foundation models for generalist medical artificial intelligence',
   'Individual profiles',
 ]) {
   assert(html.includes(contentMarker), 'Missing compact-content marker: ' + contentMarker);
@@ -141,7 +145,7 @@ try {
   assert(pageState.sections.join('|') === expectedSections.join('|'), 'Browser section order assertion failed');
   assert(new Set(pageState.ids).size === pageState.ids.length, 'Browser IDs are not unique');
   assert(pageState.internalLinks.every((id) => pageState.ids.includes(id)), 'Browser found a broken internal anchor');
-  assert(pageState.details === 0, 'Browser found an unexpected details card');
+  assert(pageState.details === 7, 'Browser bibliography reference count failed');
   assert(pageState.externalLinksSafe, 'Browser found an unsafe new-tab link');
   assert(pageState.scrollWidth <= pageState.clientWidth, 'Horizontal overflow at 320px: ' + pageState.scrollWidth + 'px');
   console.log('PASS browser structure and 320px overflow assertions');
@@ -155,6 +159,11 @@ try {
   assert(await toggle.getAttribute('aria-expanded') === 'false', 'Escape did not close mobile menu');
   assert(await page.evaluate(() => document.activeElement?.matches('[data-mobile-menu-toggle]')), 'Escape did not restore focus');
   console.log('PASS mobile-menu keyboard assertions');
+
+  const firstPaper = page.locator('.paper-item').first();
+  await firstPaper.locator('summary').click();
+  assert(await firstPaper.getAttribute('open') !== null, 'Bibliography detail did not open');
+  console.log('PASS bibliography interaction assertions');
 } finally {
   await browser?.close();
 }

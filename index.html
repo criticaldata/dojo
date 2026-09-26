@@ -141,11 +141,55 @@
             <p>Every consequential claim stays linked to the model, data, evaluator, environment, and re-test that produced it.</p>
           </div>
 
-          <div class="research-row" data-reveal>
-            <span>Selected research</span>
-            <a href="https://doi.org/10.1093/jamia/ocad088" target="_blank" rel="noopener noreferrer">SALIENT <span aria-hidden="true">↗</span></a>
-            <a href="https://doi.org/10.1038/s41591-022-01772-9" target="_blank" rel="noopener noreferrer">DECIDE-AI <span aria-hidden="true">↗</span></a>
-            <a href="https://doi.org/10.1136/bmj-2024-081554" target="_blank" rel="noopener noreferrer">FUTURE-AI <span aria-hidden="true">↗</span></a>
+          <div class="research-library" data-reveal>
+            <div class="research-library__header">
+              <div>
+                <span class="evidence-strip__label">DOJO bibliography</span>
+                <h3>Eight papers behind the evaluation layer.</h3>
+              </div>
+              <p>Start with the DOJO article, then open each reference to see how it connects to data, models, bias, and clinical deployment.</p>
+            </div>
+
+            <article class="paper-card paper-card--featured">
+              <div class="paper-card__index">01 / DOJO article</div>
+              <div class="paper-card__body">
+                <h4>Distributed Open Justice Oversight (DOJO): A Community-Driven, Modality-Agnostic Platform for Adversarial Evaluation of Health AI</h4>
+                <p class="paper-card__meta">Alexa Q. Xiang et al. · SSRN preprint · 2026</p>
+                <p>The primary DOJO paper describes the community-driven evaluation layer, its three planes, and its system-level approach to health AI.</p>
+                <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6676818" target="_blank" rel="noopener noreferrer">Read the DOJO paper <span aria-hidden="true">↗</span></a>
+              </div>
+            </article>
+
+            <div class="paper-list" aria-label="Selected DOJO bibliography">
+              <details class="paper-item">
+                <summary><span class="paper-item__index">02</span><span class="paper-item__title">Machine learning in medicine</span><span class="paper-item__toggle" aria-hidden="true">+</span></summary>
+                <div class="paper-item__content"><p class="paper-card__meta">Rajkomar, Dean &amp; Kohane · New England Journal of Medicine · 2019</p><p>Frames the opportunities and limits of machine learning in medicine, including the need to connect technical performance with clinical context.</p><a href="https://www.nejm.org/doi/full/10.1056/NEJMra1814259" target="_blank" rel="noopener noreferrer">Open paper <span aria-hidden="true">↗</span></a></div>
+              </details>
+              <details class="paper-item">
+                <summary><span class="paper-item__index">03</span><span class="paper-item__title">Ethical machine learning in healthcare</span><span class="paper-item__toggle" aria-hidden="true">+</span></summary>
+                <div class="paper-item__content"><p class="paper-card__meta">Chen, Pierson, Rose, Joshi, Ferryman &amp; Ghassemi · Annual Review of Biomedical Data Science · 2021</p><p>Provides the ethical foundation for evaluating fairness, accountability, and the social consequences of health AI.</p><a href="https://pubmed.ncbi.nlm.nih.gov/34396058/" target="_blank" rel="noopener noreferrer">Open paper <span aria-hidden="true">↗</span></a></div>
+              </details>
+              <details class="paper-item">
+                <summary><span class="paper-item__index">04</span><span class="paper-item__title">Dissecting racial bias in an algorithm used to manage the health of populations</span><span class="paper-item__toggle" aria-hidden="true">+</span></summary>
+                <div class="paper-item__content"><p class="paper-card__meta">Obermeyer, Powers, Vogeli &amp; Mullainathan · Science · 2019</p><p>Shows how a seemingly neutral proxy can reproduce racial inequity, making data and outcome definition central evaluation concerns.</p><a href="https://pubmed.ncbi.nlm.nih.gov/31649194/" target="_blank" rel="noopener noreferrer">Open paper <span aria-hidden="true">↗</span></a></div>
+              </details>
+              <details class="paper-item">
+                <summary><span class="paper-item__index">05</span><span class="paper-item__title">AI recognition of patient race in medical imaging</span><span class="paper-item__toggle" aria-hidden="true">+</span></summary>
+                <div class="paper-item__content"><p class="paper-card__meta">Gichoya et al. · The Lancet Digital Health · 2022</p><p>Demonstrates that medical images can contain hidden demographic signals, motivating adversarial testing for shortcuts and subgroup failure.</p><a href="https://www.thelancet.com/journals/landig/article/PIIS2589-7500(22)00063-2/fulltext" target="_blank" rel="noopener noreferrer">Open paper <span aria-hidden="true">↗</span></a></div>
+              </details>
+              <details class="paper-item">
+                <summary><span class="paper-item__index">06</span><span class="paper-item__title">Underdiagnosis bias of AI algorithms applied to chest radiographs</span><span class="paper-item__toggle" aria-hidden="true">+</span></summary>
+                <div class="paper-item__content"><p class="paper-card__meta">Seyyed-Kalantari et al. · Nature Medicine · 2021</p><p>Highlights how underdiagnosis can persist in underserved populations even when aggregate model performance appears strong.</p><a href="https://pubmed.ncbi.nlm.nih.gov/34893776/" target="_blank" rel="noopener noreferrer">Open paper <span aria-hidden="true">↗</span></a></div>
+              </details>
+              <details class="paper-item">
+                <summary><span class="paper-item__index">07</span><span class="paper-item__title">Implementation frameworks for end-to-end clinical AI: the SALIENT framework</span><span class="paper-item__toggle" aria-hidden="true">+</span></summary>
+                <div class="paper-item__content"><p class="paper-card__meta">van der Vegt et al. · Journal of the American Medical Informatics Association · 2023</p><p>Connects development, evaluation, implementation, and monitoring—the workflow perspective that informs DOJO’s architecture.</p><a href="https://doi.org/10.1093/jamia/ocad088" target="_blank" rel="noopener noreferrer">Open paper <span aria-hidden="true">↗</span></a></div>
+              </details>
+              <details class="paper-item">
+                <summary><span class="paper-item__index">08</span><span class="paper-item__title">Foundation models for generalist medical artificial intelligence</span><span class="paper-item__toggle" aria-hidden="true">+</span></summary>
+                <div class="paper-item__content"><p class="paper-card__meta">Moor et al. · Nature · 2023</p><p>Describes the scale and flexibility of foundation models in medicine, reinforcing the need for evaluation that is modality- and task-aware.</p><a href="https://www.nature.com/articles/s41586-023-05881-4" target="_blank" rel="noopener noreferrer">Open paper <span aria-hidden="true">↗</span></a></div>
+              </details>
+            </div>
           </div>
         </div>
       </section>
