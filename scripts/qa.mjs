@@ -87,9 +87,12 @@ for (const contentMarker of [
 
 assert(!html.includes('Eight papers behind'), 'Bibliography title should not expose a paper count');
 
-assert(!html.includes('data-institutional-mark="mit-critical-data"'), 'MIT Critical Data marks should be removed from the page');
-assert(!html.includes('assets/mit-critical-data.png'), 'MIT Critical Data asset should not be referenced');
-assert(!html.includes('criticaldata.mit.edu'), 'MIT Critical Data link should be removed from the page');
+const mitCriticalDataMarks = html.match(/data-institutional-mark="mit-critical-data"/g) ?? [];
+assert(mitCriticalDataMarks.length === 3, 'MIT Critical Data mark should appear in the header, What is DOJO, and footer');
+assert((html.match(/assets\/mit-critical-data\.png/g) ?? []).length === 3, 'MIT Critical Data asset should be used in the three retained marks');
+assert(html.includes('criticaldata.mit.edu'), 'Contact should retain the MIT Critical Data link');
+const architectureSection = html.match(/<section[^>]*id="architecture"[\s\S]*?<\/section>/)?.[0] ?? '';
+assert(!architectureSection.includes('data-institutional-mark="mit-critical-data"'), 'Architecture should not display the MIT Critical Data mark');
 
 assert((html.match(/class="signal-orbit[^\"]*"/g) ?? []).length >= 3, 'Hero needs at least three orbital rings');
 assert((css.match(/@keyframes signal-spin-/g) ?? []).length === 3, 'Hero needs three named orbital animations');
