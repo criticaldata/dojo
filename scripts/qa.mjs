@@ -75,6 +75,7 @@ for (const contentMarker of [
   'Clinical workflow',
   'Evidence object',
   'DOJO bibliography',
+  'Articles behind the evaluation layer.',
   'Distributed Open Justice Oversight (DOJO): A Community-Driven, Modality-Agnostic Platform for Adversarial Evaluation of Health AI',
   'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6676818',
   'Machine learning in medicine',
@@ -83,6 +84,8 @@ for (const contentMarker of [
 ]) {
   assert(html.includes(contentMarker), 'Missing compact-content marker: ' + contentMarker);
 }
+
+assert(!html.includes('Eight papers behind'), 'Bibliography title should not expose a paper count');
 
 assert((html.match(/class="signal-orbit[^\"]*"/g) ?? []).length >= 3, 'Hero needs at least three orbital rings');
 assert((css.match(/@keyframes signal-spin-/g) ?? []).length === 3, 'Hero needs three named orbital animations');
