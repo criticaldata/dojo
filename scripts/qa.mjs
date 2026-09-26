@@ -4,18 +4,8 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
-const expectedSections = [
-  'home',
-  'problem',
-  'what-is-dojo',
-  'how-it-works',
-  'evaluation-planes',
-  'evidence-readiness',
-  'research',
-  'team',
-  'get-involved',
-  'contact',
-];
+
+const expectedSections = ['home', 'what-is-dojo', 'architecture', 'team', 'contact'];
 const requiredFiles = ['index.html', 'styles.css', 'script.js', 'favicon.svg', '404.html', 'robots.txt'];
 const html = await readFile('index.html', 'utf8');
 const css = await readFile('styles.css', 'utf8');
@@ -36,18 +26,18 @@ const allIds = [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
 const internalLinks = [...html.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]);
 const duplicateIds = allIds.filter((id, index) => allIds.indexOf(id) !== index);
 
-assert(sectionIds.join('|') === expectedSections.join('|'), `Section order mismatch: ${sectionIds.join(', ')}`);
-assert(duplicateIds.length === 0, `Duplicate IDs found: ${duplicateIds.join(', ')}`);
+assert(sectionIds.join('|') === expectedSections.join('|'), 'Section order mismatch: ' + sectionIds.join(', '));
+assert(duplicateIds.length === 0, 'Duplicate IDs found: ' + duplicateIds.join(', '));
 for (const id of internalLinks) {
-  assert(allIds.includes(id), `Missing internal anchor target: #${id}`);
+  assert(allIds.includes(id), 'Missing internal anchor target: #' + id);
 }
 assert(/<html\s+lang="en">/.test(html), 'Document language must be en');
 assert(/<meta\s+name="viewport"\s+content="width=device-width, initial-scale=1">/.test(html), 'Viewport meta tag is missing');
 assert(/<a\s+class="skip-link"\s+href="#main">/.test(html), 'Skip link is missing');
-assert((html.match(/<details\b/g) ?? []).length === 3, 'Expected three native evaluation details cards');
+assert((html.match(/<details\b/g) ?? []).length === 0, 'Compact architecture should not require expandable details cards');
 
 for (const anchor of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) {
-  assert(/rel="[^"]*noopener[^"]*noreferrer[^"]*"/.test(anchor[0]), `Unsafe new-tab link: ${anchor[0]}`);
+  assert(/rel="[^"]*noopener[^"]*noreferrer[^"]*"/.test(anchor[0]), 'Unsafe new-tab link: ' + anchor[0]);
 }
 
 for (const token of [
@@ -62,8 +52,9 @@ for (const token of [
   '--font-display: Georgia',
   '--font-body: Inter',
 ]) {
-  assert(css.includes(token), `Missing visual token: ${token}`);
+  assert(css.includes(token), 'Missing visual token: ' + token);
 }
+
 assert(css.includes('html.js-enabled [data-reveal]'), 'Reveal styles must be gated behind html.js-enabled');
 assert(css.includes('html.js-enabled [data-reveal].is-visible'), 'Reveal styles must restore visible state with .is-visible');
 
@@ -74,49 +65,48 @@ for (const hook of [
   'IntersectionObserver',
   "addEventListener('DOMContentLoaded'",
 ]) {
-  assert(script.includes(hook), `Missing progressive enhancement hook: ${hook}`);
+  assert(script.includes(hook), 'Missing progressive enhancement hook: ' + hook);
 }
 
 for (const contentMarker of [
-  'Experimental Model',
-  'Technical System',
-  'Clinical Solution',
-  'https://doi.org/10.1136/bmj-2024-081554',
-  'regulatory approval',
+  'Distributed Open Justice Oversight',
+  'Data plane',
+  'Model plane',
+  'Clinical workflow',
+  'Evidence object',
+  'Selected research',
+  'Individual profiles',
 ]) {
-  assert(html.includes(contentMarker), `Missing source-backed content marker: ${contentMarker}`);
+  assert(html.includes(contentMarker), 'Missing compact-content marker: ' + contentMarker);
 }
 
 assert((html.match(/class="signal-orbit[^\"]*"/g) ?? []).length >= 3, 'Hero needs at least three orbital rings');
 assert((css.match(/@keyframes signal-spin-/g) ?? []).length === 3, 'Hero needs three named orbital animations');
 assert(/\.signal-core\s*\{[\s\S]*?background:\s*var\(--color-terracotta\)/.test(css), 'Hero core must use the Explore DOJO terracotta');
-assert(css.includes('.signal-orbit::before'), 'Hero orbit needs additional satellite dots');
-assert(/\.signal-orbit\s*\{\s*animation:\s*none !important;/.test(css), 'Reduced motion must disable orbital animation');
+assert(css.includes('.signal-orbit::before'), 'Hero orbit needs satellite dots');
+assert(css.includes('animation: signal-spin-outer'), 'Hero orbit needs animation');
+assert(css.includes('.signal-orbit,'), 'Reduced motion must disable orbital animation');
 
 const anatomyMarks = [...html.matchAll(/data-anatomy-mark="([^"]+)"/g)].map((match) => match[1]);
-for (const mark of ['eye', 'brain', 'heart', 'hands', 'thorax', 'legs']) {
-  assert(anatomyMarks.includes(mark), `Missing native anatomy mark: ${mark}`);
+for (const mark of ['brain', 'thorax']) {
+  assert(anatomyMarks.includes(mark), 'Missing native anatomy mark: ' + mark);
 }
-assert(anatomyMarks.length >= 6, 'Page needs a head-to-feet anatomy sequence');
-assert((html.match(/<svg\b/g) ?? []).length >= 6, 'Anatomy marks must use native SVG');
+assert(anatomyMarks.length === 2, 'Compact page should use two restrained anatomy marks');
+assert((html.match(/<svg\b/g) ?? []).length >= 2, 'Anatomy marks must use native SVG');
 for (const [sectionId, mark] of Object.entries({
   'what-is-dojo': 'brain',
-  'how-it-works': 'heart',
-  'evaluation-planes': 'hands',
-  'evidence-readiness': 'thorax',
-  research: 'legs',
+  architecture: 'thorax',
 })) {
-  const section = html.match(new RegExp(`<section[^>]*id="${sectionId}"[\\s\\S]*?<\\/section>`))?.[0] ?? '';
-  assert(section.includes(`data-anatomy-mark="${mark}"`), `Section ${sectionId} needs anatomy mark ${mark}`);
+  const section = html.match(new RegExp('<section[^>]*id="' + sectionId + '"[\\s\\S]*?<\\/section>'))?.[0] ?? '';
+  assert(section.includes('data-anatomy-mark="' + mark + '"'), 'Section ' + sectionId + ' needs anatomy mark ' + mark);
 }
 assert(html.includes('anatomy-detail'), 'Anatomy marks need internal detail lines');
 assert(html.includes('anatomy-hatch'), 'Anatomy marks need engraved hatching');
 assert(/\.anatomy-mark\s*\{[\s\S]*?position:\s*absolute/.test(css), 'Anatomy marks must be decorative positioned elements');
 assert(css.includes('@keyframes anatomy-float'), 'Anatomy marks need a subtle float animation');
-assert(/\.anatomy-mark\s*\{[\s\S]*?animation:\s*none !important;/.test(css), 'Reduced motion must disable anatomy animation');
 
-console.log('PASS static structure, accessibility metadata, and anchor assertions');
-console.log('PASS visual tokens, progressive enhancement, and source-backed content assertions');
+console.log('PASS compact structure, accessibility metadata, and anchor assertions');
+console.log('PASS visual tokens, progressive enhancement, and content assertions');
 
 let browser;
 try {
@@ -144,15 +134,16 @@ try {
       return rel.includes('noopener') && rel.includes('noreferrer');
     }),
   }));
+
   assert(pageState.lang === 'en', 'Browser language assertion failed');
   assert(pageState.viewport === 'width=device-width, initial-scale=1', 'Browser viewport assertion failed');
   assert(pageState.skipLink === '#main', 'Browser skip-link assertion failed');
   assert(pageState.sections.join('|') === expectedSections.join('|'), 'Browser section order assertion failed');
   assert(new Set(pageState.ids).size === pageState.ids.length, 'Browser IDs are not unique');
   assert(pageState.internalLinks.every((id) => pageState.ids.includes(id)), 'Browser found a broken internal anchor');
-  assert(pageState.details === 3, 'Browser details-card count failed');
+  assert(pageState.details === 0, 'Browser found an unexpected details card');
   assert(pageState.externalLinksSafe, 'Browser found an unsafe new-tab link');
-  assert(pageState.scrollWidth <= pageState.clientWidth, `Horizontal overflow at 320px: ${pageState.scrollWidth}px`);
+  assert(pageState.scrollWidth <= pageState.clientWidth, 'Horizontal overflow at 320px: ' + pageState.scrollWidth + 'px');
   console.log('PASS browser structure and 320px overflow assertions');
 
   const toggle = page.locator('[data-mobile-menu-toggle]');

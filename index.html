@@ -29,263 +29,143 @@
 
         <nav id="primary-navigation" class="site-nav" data-mobile-menu aria-label="Primary navigation">
           <a href="#home">Home</a>
-          <a href="#problem">Problem</a>
           <a href="#what-is-dojo">What is DOJO</a>
-          <a href="#how-it-works">How it works</a>
-          <a href="#evaluation-planes">Evaluation Planes</a>
-          <a href="#evidence-readiness">Evidence &amp; Readiness</a>
-          <a href="#research">Research</a>
+          <a href="#architecture">Architecture</a>
           <a href="#team">Team</a>
-          <a href="#get-involved">Get Involved</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
     </header>
 
     <main id="main">
-      <section id="home" class="hero section section--hero">
+      <section id="home" class="section section--hero hero">
         <div class="container hero__grid">
           <div class="hero__copy" data-reveal>
             <p class="eyebrow">Distributed Open Justice Oversight</p>
             <h1>Clinical AI should be tested like a system, not celebrated like a score.</h1>
             <p class="hero__lede">DOJO is an open, community-driven platform for continuous adversarial evaluation of health AI—from the data that shapes a model to the workflow in which people rely on it.</p>
             <div class="button-row">
-              <a class="button button--primary" href="#what-is-dojo">Explore DOJO</a>
+              <a class="button button--primary" href="#what-is-dojo">What is DOJO <span aria-hidden="true">↓</span></a>
               <a class="button button--quiet" href="https://github.com/criticaldata/dojo" target="_blank" rel="noopener noreferrer">View on GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </div>
-          <div class="hero__signal" data-reveal aria-label="DOJO evaluates the complete clinical AI system">
+          <div class="hero__signal" data-reveal aria-label="DOJO evaluates data, models, and clinical workflow together">
             <div class="signal-orbit signal-orbit--outer" aria-hidden="true"></div>
             <div class="signal-orbit signal-orbit--middle" aria-hidden="true"></div>
             <div class="signal-orbit signal-orbit--inner" aria-hidden="true"></div>
             <div class="signal-core">
-              <span>MODEL</span>
-              <strong>+</strong>
               <span>DATA</span>
+              <strong>+</strong>
+              <span>MODEL</span>
               <strong>+</strong>
               <span>WORKFLOW</span>
             </div>
-            <p>Evaluation becomes a continuous practice.</p>
+            <p>One system. Continuous evidence.</p>
           </div>
         </div>
         <div class="container hero__scroll-cue" aria-hidden="true">Scroll to explore <span>↓</span></div>
       </section>
 
-      <section id="problem" class="section section--problem">
-        <svg class="anatomy-mark anatomy-mark--eye" data-anatomy-mark="eye" viewBox="0 0 340 240" role="img" aria-hidden="true">
-          <path class="anatomy-shade" d="M48 124c15-39 54-63 111-65 51-2 97 17 131 60-17 35-52 61-101 68-61 9-111-11-141-63Z" />
-          <path class="anatomy-contour" d="M43 124c18-43 59-69 116-72 61-4 111 20 145 72-31 48-77 73-139 73-57 0-99-24-122-73Z" />
-          <path class="anatomy-contour" d="M43 124c-12-4-20-13-26-26 1 18 9 31 23 39M293 124c13-5 23-16 31-31-1 19-10 35-25 45" />
-          <path class="anatomy-shade" d="M47 124c16-30 35-45 55-47 12-1 21 9 22 21l2 51c-2 15-15 25-29 20-21-7-37-21-50-45Z" />
-          <path class="anatomy-contour" d="M48 124c19-27 39-43 57-44 13-1 21 9 22 22l2 43c-1 16-14 26-28 21-22-7-40-22-53-42Z" />
-          <path class="anatomy-detail" d="M60 123c11-16 24-28 38-34M62 132c12-12 23-21 35-27M69 141c11-9 20-16 31-22M74 151c9-6 17-11 26-17M254 87c12 8 23 19 32 33M260 94c11 9 19 20 25 33M267 101c8 10 14 20 18 31" />
-          <path class="anatomy-contour" d="M90 124c0-19 14-34 31-34 16 0 28 15 28 34s-12 35-28 35c-17 0-31-16-31-35Z" />
-          <path class="anatomy-detail" d="M99 124c0-13 9-23 21-23s20 10 20 23-8 24-20 24-21-11-21-24ZM113 100c-4 8-6 16-5 24M126 100c5 8 7 16 6 24M96 113c8 4 16 6 24 6M97 136c8-4 16-6 24-6M106 151c2-8 6-15 12-21M137 106c-6 6-10 13-13 21M139 137c-8-2-15-6-21-12" />
-          <path class="anatomy-contour" d="M166 53c45 2 82 23 111 60-29 38-65 59-108 62-39 3-72-13-93-45 3-27 14-48 31-62 16-12 36-17 59-15Z" />
-          <path class="anatomy-detail" d="M181 64c-27 18-41 39-43 64-2 21 7 37 25 50M198 66c-23 21-35 43-36 67-1 17 6 29 19 38M216 73c-17 20-26 41-26 62 0 14 5 27 15 38M235 84c-13 17-19 34-18 52 0 14 5 25 14 35M253 100c-9 13-13 27-11 41 1 11 6 20 13 28" />
-          <path class="anatomy-contour" d="M274 112c13 3 25 10 35 20M273 137c14-2 26-1 38 4M281 104c14 2 26 8 37 17M283 149c12-4 23-5 35-2" />
-          <path class="anatomy-detail" d="M169 119c11 0 21-1 31-3M169 126c12 2 23 2 34 1M171 133c11 4 22 6 33 6M72 75l-8-13M84 69l-6-16M97 64l-3-17M110 61l1-17M124 59l4-17M138 58l7-16M152 58l9-15M166 59l11-14M180 61l12-13" />
-          <path class="anatomy-hatch" d="M50 84l12 9M45 94l15 10M41 105l16 10M40 116l15 8M48 146l15-8M54 155l16-9M62 164l16-10M73 171l15-11M96 182l12-10M110 187l9-11M124 190l7-12M212 178l8 12M226 174l9 11M239 168l10 11M251 160l11 9M264 151l13 8M275 141l15 6M74 69l-8-11M87 64l-6-13M101 60l-4-13M115 57l0-14M129 55l4-14M143 55l8-13M158 55l11-13M173 57l13-11M188 60l14-10" />
-          <path class="anatomy-detail" d="M32 127c-3 6-3 12 0 18M284 90c14-8 27-10 41-8M282 166c14 6 26 15 36 27" />
-        </svg>
-        <div class="container split-layout">
-          <div data-reveal>
-            <p class="eyebrow">The problem</p>
-            <h2>Who evaluates the evaluators?</h2>
-          </div>
-          <div class="prose" data-reveal>
-            <p>Health AI is advancing faster than the infrastructure needed to evaluate its safety, fairness, and clinical readiness. Static benchmarks and aggregate metrics can hide shortcut learning, subgroup failures, domain shift, and breakdowns that only appear in real clinical settings.</p>
-            <p>The people closest to these failures—clinicians, patients, and communities—are often excluded from evaluation. DOJO addresses this gap by making evaluation continuous, adversarial, participatory, and accountable.</p>
-          </div>
-        </div>
-        <div class="container problem-grid" data-reveal>
-          <article class="stat-card">
-            <span class="stat-card__icon" aria-hidden="true">↗</span>
-            <h3>Benchmark blind spots</h3>
-            <p>Aggregate performance can conceal failures caused by shortcuts, population shift, and atypical cases.</p>
-          </article>
-          <article class="stat-card">
-            <span class="stat-card__icon" aria-hidden="true">◌</span>
-            <h3>Context gaps</h3>
-            <p>A model can perform well retrospectively and still fail when data, workflow, infrastructure, and people interact.</p>
-          </article>
-          <article class="stat-card">
-            <span class="stat-card__icon" aria-hidden="true">?</span>
-            <h3>Missing participation</h3>
-            <p>Those most able to identify harm need a structured way to interrogate the systems shaping care.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="what-is-dojo" class="section section--paper">
+      <section id="what-is-dojo" class="section section--what-is">
         <svg class="anatomy-mark anatomy-mark--brain" data-anatomy-mark="brain" viewBox="0 0 340 270" role="img" aria-hidden="true">
           <path class="anatomy-shade" d="M73 155c-8-36 3-75 33-99 23-18 51-17 72-5 26-14 62-2 73 24 29 5 43 32 32 56 11 26-2 53-26 63-9 24-36 35-58 24-20 17-49 12-64-7-26 11-55-2-62-28Z" />
           <path class="anatomy-contour" d="M76 166c-23-8-32-29-21-49-15-20-4-49 19-55-2-24 20-43 43-35 16-21 47-22 66-5 22-17 54-9 64 15 26-3 45 18 40 42 22 14 23 44 2 60 4 22-12 42-34 44-11 22-39 29-59 14-19 15-47 10-59-10-24 9-50-1-61-21Z" />
           <path class="anatomy-detail" d="M185 31c-9 19-12 40-8 62 4 20 1 37-9 52-8 13-10 29-5 47M106 42c13 11 18 25 13 40-5 14 0 28 13 38 12 10 15 25 8 40M75 67c17-5 31 0 41 13M65 111c18-9 35-5 47 10M77 151c17-9 33-6 44 8M107 176c7-12 19-18 34-17M134 34c13 8 19 19 17 32M218 45c-14 10-18 23-11 38 7 14 5 28-7 40M248 62c-15 9-20 22-14 37 6 13 3 26-9 36M273 89c-17 0-29 9-32 25-3 14-13 23-29 25M266 137c-14-7-28-5-38 7-10 11-22 14-37 8M235 173c-10-9-22-11-34-6M212 34c-8 11-9 22-3 33" />
-          <path class="anatomy-contour" d="M196 166c10 3 19 10 24 20l12 33c4 11 17 15 27 8l7-7c7-7 6-18-2-23l-19-12" />
-          <path class="anatomy-contour" d="M248 157c17-12 41-5 49 14 8 20-3 41-23 46-15 4-33-5-37-20" />
-          <path class="anatomy-detail" d="M247 166c13 7 20 17 20 29M254 161c14 7 24 18 27 32M239 174c15 7 25 18 29 32M236 184c13 6 21 15 25 27M235 194c10 4 17 11 21 19M226 183c7-1 14 1 20 6" />
+          <path class="anatomy-contour" d="M196 166c10 3 19 10 24 20l12 33c4 11 17 15 27 8l7-7c7-7 6-18-2-23l-19-12M248 157c17-12 41-5 49 14 8 20-3 41-23 46-15 4-33-5-37-20" />
           <path class="anatomy-hatch" d="M60 79l15 8M55 89l18 9M53 100l18 9M58 130l17-8M64 140l18-9M74 151l17-9M103 39l9 15M114 33l9 16M127 29l8 18M145 27l6 17M165 27l4 17M204 29l-7 16M218 34l-10 16M231 42l-12 15M250 57l-13 13M268 78l-16 10M275 91l-17 9M267 148l-14-9M259 158l-13-10M247 166l-12-10M222 180l-13-8M217 190l-13-8M205 197l-11-8M69 160l15-6M74 169l16-6M83 178l15-5" />
         </svg>
-        <div class="container split-layout split-layout--wide">
-          <div data-reveal>
-            <p class="eyebrow">What is DOJO</p>
-            <h2>A gym for health AI.</h2>
-          </div>
-          <div class="prose" data-reveal>
-            <p>DOJO provides an evaluation layer between clinical data and deployment. Researchers, clinicians, and evaluation teams can point it at a dataset and one or more models to generate structured evidence about bias, shortcuts, robustness, measurement equity, interoperability, and readiness.</p>
-            <p>It is modality-agnostic across imaging, tabular EHR data, clinical text, and time-series vitals. It is designed to run locally, support human and agent-assisted workflows, and grow through community-contributed evaluators and challenge sets.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="how-it-works" class="section section--workflow">
-        <svg class="anatomy-mark anatomy-mark--heart" data-anatomy-mark="heart" viewBox="0 0 360 390" role="img" aria-hidden="true">
-          <path class="anatomy-shade" d="M171 155c-36-28-78-7-88 31-8 30 12 59 34 84 24 28 45 53 64 86 18-36 39-63 65-93 22-25 39-52 28-80-12-33-48-48-79-27l-16 19Z" />
-          <path class="anatomy-contour" d="M172 157c-17-25-14-59-1-82 12-21 42-28 60-11 13 12 15 29 9 47l-12 33M187 158c0-29 10-54 32-66 19-10 44-1 49 21 4 18-4 34-18 46l-22 18" />
-          <path class="anatomy-detail" d="M181 101c-17-21-39-35-65-39-23-4-43 9-43 29 0 16 12 27 30 33l36 12M197 107c-8-28-3-56 16-75 17-17 43-13 51 6 7 16 0 31-12 44M215 112c15-19 37-31 62-31 22 0 36 17 30 35-5 15-20 22-38 24l-31 4" />
-          <path class="anatomy-contour" d="M157 146c-24-17-51-16-69-2-21 17-25 47-17 76 9 32 31 61 59 90 23 24 44 49 61 79 7 12 18 10 24-2 18-39 43-70 67-100 25-32 43-62 43-91 0-25-15-48-37-56-25-9-52 5-70 31-8-14-18-23-31-29-11-5-21-3-30 4Z" />
-          <path class="anatomy-detail" d="M153 151c-21 12-35 31-41 55-8 30 4 62 27 86M193 151c20 15 33 35 37 59 5 30-10 62-35 85M178 183c-2 35 5 67 18 97 10 24 12 47 7 70M150 160c-15 8-25 19-31 34M210 159c16 6 28 17 36 33M105 197c14 3 26 10 36 21M254 194c-15 4-27 13-36 24M127 265c14 9 25 23 31 39M236 262c-14 11-24 24-30 40" />
-          <path class="anatomy-detail" d="M147 174c-24-5-43 5-54 24M146 187c-20 0-34 9-43 26M149 203c-17 3-28 13-34 28M204 175c23-10 43-3 56 15M208 190c20-3 36 5 46 21M210 207c17 0 30 9 38 24M177 164c7 7 10 15 9 25M183 207c-2 14-1 28 4 41" />
-          <path class="anatomy-hatch" d="M78 145l16 10M71 156l18 12M67 169l19 12M66 184l18 11M72 201l17 10M82 218l16 10M93 236l16 10M108 254l15 11M123 272l14 12M137 291l14 12M148 311l13 12M157 331l13 11M267 145l-16 10M274 156l-18 12M278 169l-19 12M279 184l-18 11M273 201l-17 10M263 218l-16 10M252 236l-16 10M237 254l-15 11M222 272l-14 12M208 291l-14 12M198 311l-13 12M190 331l-13 11" />
-          <path class="anatomy-hatch" d="M104 72l-5-17M116 75l-3-19M128 80l1-19M249 46l15-10M255 56l18-8M260 67l18-5M211 61l-11-13M219 55l-8-16M229 52l-3-18" />
-        </svg>
-        <div class="container">
+        <div class="container compact-section">
           <div class="section-heading" data-reveal>
-            <p class="eyebrow">How it works</p>
-            <h2>From declared risk to defensible evidence.</h2>
-            <p>DOJO turns a threat model into controlled challenges, paired observations, independent assurance, and a release decision that cannot average away a critical failure.</p>
+            <p class="eyebrow">01 / What is DOJO</p>
+            <h2>A shared evaluation layer for clinical AI.</h2>
           </div>
-          <div class="workflow" data-reveal aria-label="Six-stage DOJO evaluation lifecycle">
-            <div class="workflow__step"><span>00</span><h3>Specify</h3><p>Freeze the model, cohort, intended use, and threat model.</p></div>
-            <div class="workflow__step"><span>01</span><h3>Assess data</h3><p>Check cohort integrity, missingness, leakage, and measurement equity.</p></div>
-            <div class="workflow__step"><span>02</span><h3>Stress model</h3><p>Probe shortcuts, shift, rare cases, calibration, and abstention.</p></div>
-            <div class="workflow__step"><span>03</span><h3>Simulate workflow</h3><p>Test interoperability, compute, human factors, and integration.</p></div>
-            <div class="workflow__step"><span>04</span><h3>Remediate</h3><p>Replay the original challenge and check for regressions.</p></div>
-            <div class="workflow__step"><span>05</span><h3>Assure release</h3><p>Validate evidence, evaluators, provenance, and policy compliance.</p></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="evaluation-planes" class="section section--paper">
-        <svg class="anatomy-mark anatomy-mark--hands" data-anatomy-mark="hands" viewBox="0 0 260 220" role="img" aria-hidden="true">
-          <path class="anatomy-contour" d="M34 190c-11-25-13-48-8-70l8-49c2-9 10-13 17-10 7 2 10 9 8 17l-5 26 13-70c2-9 9-13 17-11 8 2 11 10 9 18l-12 64 19-81c2-8 9-12 17-10 8 2 11 10 9 18l-15 77 15-57c2-8 9-12 17-10 8 2 11 10 9 18l-15 61c-5 22-15 43-32 61l-9 10H34Z" />
-          <path class="anatomy-contour" d="M226 190c11-25 13-48 8-70l-8-49c-2-9-10-13-17-10-7 2-10 9-8 17l5 26-13-70c-2-9-9-13-17-11-8 2-11 10-9 18l12 64-19-81c-2-8-9-12-17-10-8 2-11 10-9 18l15 77-15-57c-2-8-9-12-17-10-8 2-11 10-9 18l15 61c5 22 15 43 32 61l9 10h42Z" />
-          <path class="anatomy-detail" d="M47 114c12-7 24-3 32 8l10 14c6 8 16 12 26 10M213 114c-12-7-24-3-32 8l-10 14c-6 8-16 12-26 10M74 62l-8 47M96 54l-13 57M119 51l-13 61M186 62l8 47M164 54l13 57M141 51l13 61" />
-          <path class="anatomy-hatch" d="M28 154l29 16M31 164l27 16M232 154l-29 16M229 164l-27 16M80 187l18 13M180 187l-18 13" />
-        </svg>
-        <div class="container">
-          <div class="section-heading" data-reveal>
-            <p class="eyebrow">Evaluation planes</p>
-            <h2>One system. Three ways to challenge it.</h2>
-            <p>DOJO separates upstream data risks, model behavior, and clinical integration while preserving the evidence that connects them.</p>
-          </div>
-          <div class="plane-grid" data-reveal>
-            <details class="plane-card">
-              <summary><span class="plane-card__number">01</span><span><strong>Data Plane</strong><small>What does the dataset make easy to believe?</small></span><span class="plane-card__plus" aria-hidden="true">+</span></summary>
-              <p>Identifies cohort composition changes, documentation inequity, leakage, missingness, and spurious signals that can shape a model before inference begins.</p>
-            </details>
-            <details class="plane-card">
-              <summary><span class="plane-card__number">02</span><span><strong>Model Plane</strong><small>How does behavior change under stress?</small></span><span class="plane-card__plus" aria-hidden="true">+</span></summary>
-              <p>Tests robustness to missing or shifted inputs, rare presentations, multimodal contradictions, calibration failures, unsafe confidence, and non-grounded reasoning.</p>
-            </details>
-            <details class="plane-card">
-              <summary><span class="plane-card__number">03</span><span><strong>Clinical Workflow Plane</strong><small>Can the system function where care happens?</small></span><span class="plane-card__plus" aria-hidden="true">+</span></summary>
-              <p>Evaluates structural and semantic interoperability, pipeline integrity, compute behavior, human-AI interaction, and deployment readiness in context.</p>
-            </details>
+          <div class="what-is-grid">
+            <div class="prose" data-reveal>
+              <p>Distributed Open Justice Oversight is an open, community-driven platform for adversarial evaluation and remediation of health AI systems.</p>
+              <p>It helps researchers, clinicians, and evaluation teams examine the full system—not only a model score—before and during clinical use.</p>
+            </div>
+            <div class="principles-list" data-reveal>
+              <div class="principle"><span>01</span><strong>Open</strong><p>Shared tools, challenge sets, and evidence that can be reviewed and improved.</p></div>
+              <div class="principle"><span>02</span><strong>Local-first</strong><p>Designed to work near the data and within institutional security requirements.</p></div>
+              <div class="principle"><span>03</span><strong>Community-driven</strong><p>Clinical, technical, and lived expertise shape what gets tested.</p></div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="evidence-readiness" class="section section--evidence">
+      <section id="architecture" class="section section--architecture">
         <svg class="anatomy-mark anatomy-mark--thorax" data-anatomy-mark="thorax" viewBox="0 0 360 420" role="img" aria-hidden="true">
           <path class="anatomy-shade" d="M179 94c-31-20-70-13-89 14-19 28-20 75-8 117 11 38 34 68 71 82l27-17 27 17c37-14 60-44 71-82 12-42 11-89-8-117-19-27-58-34-89-14Z" />
           <path class="anatomy-contour" d="M164 40c-30 5-49 13-68 19-20 6-40 5-58 1 11 25 26 44 47 54M196 40c30 5 49 13 68 19 20 6 40 5 58 1-11 25-26 44-47 54M162 40c6 17 7 35 4 53M198 40c-6 17-7 35-4 53M70 111c-23 34-33 78-27 119 7 50 33 91 72 113M290 111c23 34 33 78 27 119-7 50-33 91-72 113" />
-          <path class="anatomy-detail" d="M178 77v222M182 77v222M173 88c-26-5-52-2-78 12-18 10-32 23-45 41M174 115c-29-2-58 5-84 20-18 11-33 25-45 42M174 143c-30 1-57 10-82 27-17 12-31 28-42 46M174 173c-29 4-55 16-77 34-15 13-27 29-37 48M174 203c-26 7-48 20-66 38-12 14-21 30-28 48M174 232c-20 10-37 24-50 40-8 11-14 23-18 35M186 88c26-5 52-2 78 12 18 10 32 23 45 41M186 115c29-2 58 5 84 20 18 11 33 25 45 42M186 143c30 1 57 10 82 27 17 12 31 28 42 46M186 173c29 4 55 16 77 34 15 13 27 29 37 48M186 203c26 7 48 20 66 38 12 14 21 30 28 48M186 232c20 10 37 24 50 40 8 11 14 23 18 35" />
+          <path class="anatomy-detail" d="M178 77v222M182 77v222M173 88c-26-5-52-2-78 12-18 10-32 23-45 41M174 115c-29-2-58 5-84 20-18 11-33 25-45 42M174 143c-30 1-57 10-82 27-17 12-31 28-42 46M174 173c-29 4-55 16-77 34-15 13-27 29-37 48M186 88c26-5 52-2 78 12 18 10 32 23 45 41M186 115c29-2 58 5 84 20 18 11 33 25 45 42M186 143c30 1 57 10 82 27 17 12 31 28 42 46M186 173c29 4 55 16 77 34 15 13 27 29 37 48" />
           <path class="anatomy-contour" d="M174 93c-26-18-58-11-73 13-17 27-15 75-3 108 12 34 31 58 63 70 10 4 16-2 17-15M186 93c26-18 58-11 73 13 17 27 15 75 3 108-12 34-31 58-63 70-10 4-16-2-17-15" />
-          <path class="anatomy-shade" d="M172 101c-25-14-49-3-58 22-10 27-8 68 4 96 9 22 23 41 46 52 9 4 13 0 13-13V111ZM188 101c25-14 49-3 58 22 10 27 8 68-4 96-9 22-23 41-46 52-9 4-13 0-13-13V111Z" />
-          <path class="anatomy-detail" d="M171 108c-15 0-28-10-36-23M171 109c-18 7-30 19-36 38M171 154c-15 11-24 26-27 46M171 186c-12 16-17 33-16 50M171 214c-9 13-12 27-10 41M189 108c15 0 28-10 36-23M189 109c18 7 30 19 36 38M189 154c15 11 24 26 27 46M189 186c12 16 17 33 16 50M189 214c9 13 12 27 10 41M180 100v153M180 260c-20 22-42 34-68 39M180 260c20 22 42 34 68 39" />
-          <path class="anatomy-hatch" d="M58 126l16 9M53 139l18 10M49 153l18 10M46 168l18 10M45 184l17 9M47 200l16 9M51 216l15 8M57 232l14 8M65 248l13 7M74 264l13 7M302 126l-16 9M307 139l-18 10M311 153l-18 10M314 168l-18 10M315 184l-17 9M313 200l-16 9M309 216l-15 8M303 232l-14 8M295 248l-13 7M286 264l-13 7M121 282l12 9M127 290l13 9M137 298l13 8M239 282l-12 9M233 290l-13 9M223 298l-13 8" />
-          <path class="anatomy-detail" d="M177 296c-14 7-28 18-41 33M183 296c14 7 28 18 41 33M180 79c0-9 0-17 1-25M176 64l8 0M176 71l8 0M176 78l8 0" />
+          <path class="anatomy-hatch" d="M58 126l16 9M53 139l18 10M49 153l18 10M46 168l18 10M45 184l17 9M302 126l-16 9M307 139l-18 10M311 153l-18 10M314 168l-18 10M315 184l-17 9M121 282l12 9M127 290l13 9M137 298l13 8M239 282l-12 9M233 290l-13 9M223 298l-13 8" />
         </svg>
-        <div class="container">
+        <div class="container compact-section">
           <div class="section-heading" data-reveal>
-            <p class="eyebrow">Evidence &amp; readiness</p>
-            <h2>The evidence is the product.</h2>
-            <p>DOJO treats every consequential claim as an auditable Evidence Object with identity, challenge, observation, assurance, and lineage.</p>
+            <p class="eyebrow">02 / Architecture</p>
+            <h2>From data to care, evaluated as one system.</h2>
+            <p>Three connected planes make failures visible at the point where they enter the system.</p>
           </div>
-          <div class="evidence-layout" data-reveal>
-            <div class="evidence-object">
-              <span class="evidence-object__label">Evidence Object</span>
-              <div class="evidence-object__layers"><span>Identity</span><span>Challenge</span><span>Observation</span><span>Assurance</span><span>Lineage</span></div>
-              <p>Findings remain linked to the exact model, data, evaluator, policy, environment, challenge, uncertainty, and re-test that produced them.</p>
-            </div>
-            <div class="readiness-panel">
-              <span class="evidence-object__label">Readiness profile</span>
-              <div class="readiness-vector" aria-label="Readiness dimensions: robustness, equity, calibration, interoperability, compute, human factors, provenance, evaluator assurance, and privacy"><span>Robustness</span><span>Equity</span><span>Calibration</span><span>Interop</span><span>Compute</span><span>Human</span><span>Provenance</span><span>Evaluator</span><span>Privacy</span></div>
-              <div class="readiness-states"><span class="state state--pass">PASS</span><span class="state state--warn">WARN</span><span class="state state--fail">FAIL</span><span class="state state--insufficient">INSUFFICIENT EVIDENCE</span></div>
-            </div>
-          </div>
-          <div class="research-grid maturity-grid" data-reveal>
-            <article class="research-card"><span>01 / Experimental Model</span><h3>A frozen predictor with a defined task, provenance, and initial robustness profile.</h3></article>
-            <article class="research-card"><span>02 / Technical System</span><h3>Validated adapters, reproducible pipelines, target-like compute, and complete evidence lineage.</h3></article>
-            <article class="research-card"><span>03 / Clinical Solution</span><h3>Local interoperability, workflow fit, human-AI interaction, monitoring, and accountable ownership.</h3></article>
-          </div>
-          <div class="prose claims-boundary" data-reveal>
-            <p><strong>Claims boundary:</strong> a functional pilot can demonstrate reproducible challenges, evaluator quality, evidence lineage, and readiness reporting. It cannot by itself establish regulatory approval, universal clinical safety, patient-outcome benefit, or the absence of undiscovered failure modes.</p>
-          </div>
-        </div>
-      </section>
 
-      <section id="research" class="section section--paper">
-        <svg class="anatomy-mark anatomy-mark--legs" data-anatomy-mark="legs" viewBox="0 0 380 520" role="img" aria-hidden="true">
-          <path class="anatomy-shade" d="M118 45c22 2 43 9 65 22-2 38-6 76-4 109-20 30-33 64-39 104-5 31-3 66-13 94-8 20-20 34-32 49l-31-4c10-21 21-41 26-62 7-29 2-59-7-87-11-32-15-61-4-88 14-33 22-71 19-108-1-12 5-23 20-29Z" />
-          <path class="anatomy-shade" d="M262 45c-22 2-43 9-65 22 2 38 6 76 4 109 20 30 33 64 39 104 5 31 3 66 13 94 8 20 20 34 32 49l31-4c-10-21-21-41-26-62-7-29-2-59 7-87 11-32 15-61 4-88-14-33-22-71-19-108 1-12-5-23-20-29Z" />
-          <path class="anatomy-contour" d="M119 49c17-13 39-18 61-15 22-3 44 2 61 15l21 22-14 26-24 8-3 56 15 58-13 57-3 55 20 54 34 35-8 18-58-2-14-15-6-37-9-37-14-55-9-39-9 39-14 55-9 37-6 37-14 15-58 2-8-18 34-35 20-54-3-55-13-57 15-58-3-56-24-8-14-26Z" />
-          <path class="anatomy-contour" d="M121 75c-16 29-24 64-18 93 4 19 14 33 27 46M259 75c16 29 24 64 18 93-4 19-14 33-27 46" />
-          <path class="anatomy-detail" d="M180 58c-2 26-3 50 0 72M200 58c2 26 3 50 0 72M136 84c14 19 17 43 10 69-5 20-1 36 12 50M244 84c-14 19-17 43-10 69 5 20 1 36-12 50M116 113c17 12 27 29 29 49M264 113c-17 12-27 29-29 49M148 173c10 15 22 23 35 24M232 173c-10 15-22 23-35 24M157 197c-10 22-18 42-21 63-3 20 0 39 10 57M223 197c10 22 18 42 21 63 3 20 0 39-10 57M147 218c13 8 22 20 27 37M233 218c-13 8-22 20-27 37M137 268c15 8 26 21 34 38M243 268c-15 8-26 21-34 38M133 296c12 10 23 22 32 37M247 296c-12 10-23 22-32 37M129 330c15 8 27 9 39 5M251 330c-15 8-27 9-39 5M126 350c14 7 28 8 42 4M254 350c-14 7-28 8-42 4" />
-          <path class="anatomy-contour" d="M123 375c-7 20-19 39-38 53l-25 19c-8 7-7 18 2 22 17 7 43 6 66 1 14-3 22-13 24-27l10-52M257 375c7 20 19 39 38 53l25 19c8 7 7 18-2 22-17 7-43 6-66 1-14-3-22-13-24-27l-10-52" />
-          <path class="anatomy-detail" d="M83 427c20 5 41 5 61-1M297 427c-20 5-41 5-61-1M69 444c18 5 35 5 53 1M311 444c-18 5-35 5-53 1M91 454l-8 19M105 454l-3 20M118 452l2 19M289 454l8 19M275 454l3 20M262 452l-2 19M147 84c-7 18-8 36-3 53M233 84c7 18 8 36 3 53M164 263c-7 18-8 36-4 54M216 263c7 18 8 36 4 54M180 160v33M200 160v33" />
-          <path class="anatomy-hatch" d="M117 95l15 10M112 108l17 11M108 122l18 11M107 138l17 10M110 155l16 9M117 171l14 8M143 214l13 8M139 229l14 8M136 245l15 9M133 263l16 9M132 281l16 8M135 301l16 8M138 318l15 8M263 95l-15 10M268 108l-17 11M272 122l-18 11M273 138l-17 10M270 155l-16 9M263 171l-14 8M237 214l-13 8M241 229l-14 8M244 245l-15 9M247 263l-16 9M248 281l-16 8M245 301l-16 8M242 318l-15 8M74 438l12 8M71 447l13 7M306 438l-12 8M309 447l-13 7" />
-          <path class="anatomy-detail" d="M159 67c8 5 17 8 25 9 8-1 17-4 25-9M176 74c-3 12-4 25-2 39M204 74c3 12 4 25 2 39M171 139c6 8 11 13 19 17 8-4 13-9 19-17M165 213c9-5 18-7 25-7M215 213c-9-5-18-7-25-7M164 363c6 6 12 9 26 10 14-1 20-4 26-10M167 391c7-4 15-5 23-4 8-1 16 0 23 4M173 423c5 3 11 5 17 5 6 0 12-2 17-5" />
-        </svg>
-        <div class="container">
-          <div class="section-heading" data-reveal>
-            <p class="eyebrow">Research</p>
-            <h2>Evaluation as a living research program.</h2>
-            <p>DOJO connects adversarial testing, clinical implementation, and human oversight into an open program of evidence generation.</p>
+          <div class="plane-grid" data-reveal>
+            <article class="plane-card">
+              <span class="plane-card__number">01</span>
+              <h3>Data plane</h3>
+              <p>Checks cohort integrity, missingness, documentation inequity, leakage, and spurious signals.</p>
+            </article>
+            <article class="plane-card plane-card--featured">
+              <span class="plane-card__number">02</span>
+              <h3>Model plane</h3>
+              <p>Challenges robustness, calibration, rare cases, shifted inputs, unsafe confidence, and abstention.</p>
+            </article>
+            <article class="plane-card">
+              <span class="plane-card__number">03</span>
+              <h3>Clinical workflow</h3>
+              <p>Tests interoperability, infrastructure, human-AI interaction, and readiness in context.</p>
+            </article>
           </div>
-          <div class="research-grid" data-reveal>
-            <article class="research-card"><span>01 / Adversarial evaluation</span><h3>Find what conventional benchmarks miss.</h3><a href="https://github.com/criticaldata/dojo" target="_blank" rel="noopener noreferrer">Explore the repository <span aria-hidden="true">↗</span></a></article>
-            <article class="research-card"><span>02 / Clinical readiness</span><h3>Move from a model to a technical system to a clinical solution.</h3><a href="https://doi.org/10.1093/jamia/ocad088" target="_blank" rel="noopener noreferrer">Read SALIENT <span aria-hidden="true">↗</span></a></article>
-            <article class="research-card"><span>03 / Human oversight</span><h3>Evaluate the evaluators as part of the system.</h3><a href="https://doi.org/10.1038/s41591-022-01772-9" target="_blank" rel="noopener noreferrer">Read DECIDE-AI <span aria-hidden="true">↗</span></a></article>
-            <article class="research-card"><span>04 / Trustworthy deployment</span><h3>Keep fairness, usability, robustness, and accountability visible across the lifecycle.</h3><a href="https://doi.org/10.1136/bmj-2024-081554" target="_blank" rel="noopener noreferrer">Read FUTURE-AI <span aria-hidden="true">↗</span></a></article>
+
+          <div class="architecture-flow" data-reveal aria-label="Four-stage DOJO evaluation lifecycle">
+            <div class="flow-step"><span>01</span><strong>Define risk</strong><small>Freeze the intended use and threat model.</small></div>
+            <div class="flow-line" aria-hidden="true">→</div>
+            <div class="flow-step"><span>02</span><strong>Challenge</strong><small>Run controlled stress tests across the planes.</small></div>
+            <div class="flow-line" aria-hidden="true">→</div>
+            <div class="flow-step"><span>03</span><strong>Observe</strong><small>Trace findings to evidence and provenance.</small></div>
+            <div class="flow-line" aria-hidden="true">→</div>
+            <div class="flow-step"><span>04</span><strong>Assure</strong><small>Report readiness, limits, and next action.</small></div>
+          </div>
+
+          <div class="evidence-strip" data-reveal>
+            <div><span class="evidence-strip__label">Evidence object</span><strong>Identity · Challenge · Observation · Assurance · Lineage</strong></div>
+            <p>Every consequential claim stays linked to the model, data, evaluator, environment, and re-test that produced it.</p>
+          </div>
+
+          <div class="research-row" data-reveal>
+            <span>Selected research</span>
+            <a href="https://doi.org/10.1093/jamia/ocad088" target="_blank" rel="noopener noreferrer">SALIENT <span aria-hidden="true">↗</span></a>
+            <a href="https://doi.org/10.1038/s41591-022-01772-9" target="_blank" rel="noopener noreferrer">DECIDE-AI <span aria-hidden="true">↗</span></a>
+            <a href="https://doi.org/10.1136/bmj-2024-081554" target="_blank" rel="noopener noreferrer">FUTURE-AI <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
 
       <section id="team" class="section section--team">
-        <div class="container team-layout">
-          <div data-reveal>
-            <p class="eyebrow">Team</p>
+        <div class="container compact-section">
+          <div class="section-heading" data-reveal>
+            <p class="eyebrow">03 / Team</p>
             <h2>Built across disciplines.</h2>
+            <p>DOJO brings together the perspectives needed to test the system around a model, not only the model itself.</p>
           </div>
-          <div class="prose" data-reveal>
-            <p>DOJO brings together clinical researchers, machine-learning practitioners, engineers, and community reviewers. Its governance model is designed to keep technical quality, clinical meaning, and local context in conversation.</p>
-            <p>The team and contributor network will grow with the platform. Confirmed collaborators, partner institutions, and maintainers will be listed as the project owners make them available.</p>
-          </div>
-        </div>
-      </section>
 
-      <section id="get-involved" class="section section--paper">
-        <div class="container cta-layout" data-reveal>
-          <div>
-            <p class="eyebrow">Get involved</p>
-            <h2>Practice better evaluation together.</h2>
+          <div class="team-grid" data-reveal>
+            <article class="team-card"><span>Clinical research</span><h3>Clinicians and health researchers</h3><p>Define meaningful failure modes, intended use, and the realities of care.</p></article>
+            <article class="team-card"><span>Technical practice</span><h3>ML practitioners and engineers</h3><p>Build evaluators, reproducible pipelines, and evidence that can be inspected.</p></article>
+            <article class="team-card"><span>Public accountability</span><h3>Community reviewers</h3><p>Bring local context, lived experience, and challenge to what counts as readiness.</p></article>
           </div>
-          <div class="prose">
-            <p>Contribute a challenge, test an evaluator, review evidence, or help shape the standards that make clinical AI more accountable.</p>
-            <div class="button-row"><a class="button button--primary" href="https://github.com/criticaldata/dojo" target="_blank" rel="noopener noreferrer">Visit the repository <span aria-hidden="true">↗</span></a><a class="button button--quiet" href="https://criticaldata.mit.edu" target="_blank" rel="noopener noreferrer">MIT Critical Data <span aria-hidden="true">↗</span></a></div>
+
+          <div class="team-note" data-reveal>
+            <p>Individual profiles, LinkedIn or Google Scholar links, and direct contact details will be added after the project owners confirm the names and public information to display.</p>
           </div>
         </div>
       </section>
@@ -298,7 +178,10 @@
           </div>
           <div class="contact-card">
             <p>For collaboration, contribution, or institutional questions, start a conversation through the DOJO repository.</p>
-            <a class="text-link" href="https://github.com/criticaldata/dojo/issues" target="_blank" rel="noopener noreferrer">Open a GitHub issue <span aria-hidden="true">↗</span></a>
+            <div class="button-row">
+              <a class="button button--primary" href="https://github.com/criticaldata/dojo/issues" target="_blank" rel="noopener noreferrer">Open a GitHub issue <span aria-hidden="true">↗</span></a>
+              <a class="button button--quiet" href="https://criticaldata.mit.edu" target="_blank" rel="noopener noreferrer">MIT Critical Data <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
         </div>
       </section>

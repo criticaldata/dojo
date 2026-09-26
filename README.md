@@ -2,7 +2,7 @@
 
 The public DOJO website explains Distributed Open Justice Oversight, an open and community-driven platform for adversarial evaluation of clinical AI systems.
 
-The single-page site moves through the project problem, DOJO's evaluation approach, the Data/Model/Clinical Workflow planes, Evidence & Readiness, research, team roles, contribution routes, and contact through the public repository.
+The single-page site presents DOJO through three compact ideas: what it is, how its data/model/clinical-workflow architecture works, and the disciplines that shape the project. Research links and contribution routes stay available without turning the page into a long technical document.
 
 The complete public website is live at [criticaldata.github.io/dojo](https://criticaldata.github.io/dojo/).
 
