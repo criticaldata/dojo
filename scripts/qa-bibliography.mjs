@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 
 const html = await readFile('index.html', 'utf8');
+const teamSection = html.match(/<section id="team"[\s\S]*?<\/section>/)?.[0] ?? '';
 
 const assert = (condition, message) => {
   if (!condition) {
@@ -26,4 +27,10 @@ for (const url of [
 }
 
 assert((html.match(/<details class="paper-item"/g) ?? []).length === 10, 'Bibliography should contain ten expandable additions after the DOJO paper');
+
+assert(teamSection.includes('assets/team/isaac-gavilanes.jpeg'), 'Isaac Gavilanes photo is missing from the team section');
+assert(teamSection.includes('<h3>Isaac Gavilanes</h3>'), 'Isaac Gavilanes profile is missing from the team section');
+assert(teamSection.includes('https://scholar.google.com/citations?user=Ji1mE78AAAAJ&amp;hl=es&amp;authuser=1'), 'Isaac Gavilanes Google Scholar link is missing');
+assert(teamSection.includes('https://www.linkedin.com/in/ACoAAFCatZYBoY-ysMaO68JsqcT9DlFLV0vs3gc'), 'Isaac Gavilanes LinkedIn link is missing');
+assert(teamSection.indexOf('Isaac Gavilanes') < teamSection.indexOf('Julie CHASSERIAUD'), 'Multidisciplinary researchers are not alphabetized');
 console.log('PASS bibliography order, titles, URLs, and count assertions');
