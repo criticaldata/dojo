@@ -34,7 +34,7 @@ for (const id of internalLinks) {
 assert(/<html\s+lang="en">/.test(html), 'Document language must be en');
 assert(/<meta\s+name="viewport"\s+content="width=device-width, initial-scale=1">/.test(html), 'Viewport meta tag is missing');
 assert(/<a\s+class="skip-link"\s+href="#main">/.test(html), 'Skip link is missing');
-assert((html.match(/<details\b/g) ?? []).length === 7, 'Bibliography should include seven expandable references after the DOJO paper');
+assert((html.match(/<details\b/g) ?? []).length === 10, 'Bibliography should include ten expandable references after the DOJO paper');
 
 for (const anchor of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) {
   assert(/rel="[^"]*noopener[^"]*noreferrer[^"]*"/.test(anchor[0]), 'Unsafe new-tab link: ' + anchor[0]);
@@ -78,6 +78,12 @@ for (const contentMarker of [
   'Articles behind the evaluation layer.',
   'Distributed Open Justice Oversight (DOJO): A Community-Driven, Modality-Agnostic Platform for Adversarial Evaluation of Health AI',
   'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6676818',
+  'Agents Catching Agents: Shortcut Cascades and Benchmark Gaming in Clinical Multi-Agent Systems',
+  'ModaLens: Measuring Image Sensitivity in Report-Conditioned Medical VLMs',
+  'Towards a Deterministic Math Solver for Clinical Language Models',
+  'https://arxiv.org/abs/2608.03744',
+  'https://arxiv.org/abs/2609.15635',
+  'https://arxiv.org/html/2609.10728',
   'Machine learning in medicine',
   'Foundation models for generalist medical artificial intelligence',
 ]) {
@@ -178,7 +184,7 @@ try {
   assert(pageState.sections.join('|') === expectedSections.join('|'), 'Browser section order assertion failed');
   assert(new Set(pageState.ids).size === pageState.ids.length, 'Browser IDs are not unique');
   assert(pageState.internalLinks.every((id) => pageState.ids.includes(id)), 'Browser found a broken internal anchor');
-  assert(pageState.details === 7, 'Browser bibliography reference count failed');
+  assert(pageState.details === 10, 'Browser bibliography reference count failed');
   assert(pageState.externalLinksSafe, 'Browser found an unsafe new-tab link');
   assert(pageState.scrollWidth <= pageState.clientWidth, 'Horizontal overflow at 320px: ' + pageState.scrollWidth + 'px');
   console.log('PASS browser structure and 320px overflow assertions');
