@@ -80,7 +80,6 @@ for (const contentMarker of [
   'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6676818',
   'Machine learning in medicine',
   'Foundation models for generalist medical artificial intelligence',
-  'Individual profiles',
 ]) {
   assert(html.includes(contentMarker), 'Missing compact-content marker: ' + contentMarker);
 }
@@ -93,6 +92,30 @@ assert((html.match(/assets\/mit-critical-data\.png/g) ?? []).length === 3, 'MIT 
 assert(html.includes('criticaldata.mit.edu'), 'Contact should retain the MIT Critical Data link');
 const architectureSection = html.match(/<section[^>]*id="architecture"[\s\S]*?<\/section>/)?.[0] ?? '';
 assert(!architectureSection.includes('data-institutional-mark="mit-critical-data"'), 'Architecture should not display the MIT Critical Data mark');
+
+const teamSection = html.replaceAll('&amp;', '&').match(/<section[^>]*id="team"[\s\S]*?<\/section>/)?.[0] ?? '';
+for (const teamMarker of [
+  'Research Team',
+  'Principal Investigator',
+  'Leo Celi',
+  'Julie CHASSERIAUD',
+  'Sebastian Cajas',
+  'Yehudhah Rodriguez',
+  'assets/team/leo-celi.jpg',
+  'assets/team/julie-chasseriaud.jpeg',
+  'assets/team/sebastian-cajas.jpg',
+  'assets/team/yehudhah-rodriguez.jpeg',
+  'https://www.linkedin.com/in/leo-anthony-celi-b25131/',
+  'https://scholar.google.com/citations?user=kssA7YwAAAAJ&hl=en',
+  'https://www.linkedin.com/in/julie-chasseriaud-007886227',
+  'https://scholar.google.com/citations?user=j1aZ9oYAAAAJ&hl=en',
+  'https://www.linkedin.com/in/sebasmos777?originalSubdomain=ie',
+  'https://scholar.google.com/citations?hl=en&user=lNl9qGAAAAAJ',
+  'https://www.linkedin.com/in/yehudhah-kennedy-rodriguez-moran-27910b3b6?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+]) {
+  assert(teamSection.includes(teamMarker), 'Missing team marker: ' + teamMarker);
+}
+assert(!teamSection.includes('Individual profiles'), 'Team section still contains the unconfirmed-profile placeholder');
 
 assert((html.match(/class="signal-orbit[^\"]*"/g) ?? []).length >= 3, 'Hero needs at least three orbital rings');
 assert((css.match(/@keyframes signal-spin-/g) ?? []).length === 3, 'Hero needs three named orbital animations');
