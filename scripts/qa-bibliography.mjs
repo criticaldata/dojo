@@ -65,7 +65,13 @@ assert(teamSection.includes('assets/team/isaac-gavilanes.jpeg'), 'Isaac Gavilane
 assert(teamSection.includes('<h3>Isaac Gavilanes</h3>'), 'Isaac Gavilanes profile is missing from the team section');
 assert(teamSection.includes('https://scholar.google.com/citations?user=Ji1mE78AAAAJ&amp;hl=es&amp;authuser=1'), 'Isaac Gavilanes Google Scholar link is missing');
 assert(teamSection.includes('https://www.linkedin.com/in/ACoAAFCatZYBoY-ysMaO68JsqcT9DlFLV0vs3gc'), 'Isaac Gavilanes LinkedIn link is missing');
+assert(teamSection.includes('assets/team/mohammad-shahin.jpg'), 'Mohammad Shahin photo is missing from the team section');
+assert(teamSection.includes('<h3>Mohammad Shahin</h3>'), 'Mohammad Shahin profile is missing from the team section');
+assert(teamSection.includes('https://scholar.google.com/citations?hl=en&amp;user=FoprsSQAAAAJ'), 'Mohammad Shahin Google Scholar link is missing');
+assert(teamSection.includes('https://www.linkedin.com/in/mohammad-shahin-325493209'), 'Mohammad Shahin LinkedIn link is missing');
 assert(teamSection.indexOf('Isaac Gavilanes') < teamSection.indexOf('Julie CHASSERIAUD'), 'Multidisciplinary researchers are not alphabetized');
+assert(teamSection.indexOf('Julie CHASSERIAUD') < teamSection.indexOf('Mohammad Shahin'), 'Mohammad Shahin is out of alphabetical order');
+assert(teamSection.indexOf('Mohammad Shahin') < teamSection.indexOf('Sebastian Cajas'), 'Multidisciplinary researchers are not alphabetized');
 
 assert(contactSection.includes('class="contact-people"'), 'Contact people list is missing');
 for (const contactMarker of [
