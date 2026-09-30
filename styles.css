@@ -929,6 +929,37 @@ h3 {
   font-size: 1.12rem;
 }
 
+.contact-people {
+  display: grid;
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+}
+
+.contact-person {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 253, 249, 0.2);
+}
+
+.contact-person__name {
+  color: var(--color-paper);
+}
+
+.contact-person a {
+  color: rgba(255, 253, 249, 0.8);
+  font-size: 0.9rem;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.contact-person a:hover,
+.contact-person a:focus-visible {
+  color: var(--color-paper);
+}
+
 .contact-card .button--quiet {
   border-color: rgba(255, 253, 249, 0.42);
   color: var(--color-paper);
@@ -1267,6 +1298,12 @@ html.js-enabled [data-reveal].is-visible {
   .button-row {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .contact-person {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
   .button {

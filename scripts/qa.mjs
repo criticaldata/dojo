@@ -104,6 +104,12 @@ for (const contentMarker of [
   'https://doi.org/10.1038/s41746-019-0079-z',
   'https://doi.org/10.1038/s41746-019-0155-4',
   'https://doi.org/10.1038/s42256-020-0214-1',
+  'Leo Celi',
+  'mailto:lceli@mit.edu',
+  'Sebastian Cajas',
+  'mailto:asebasmos@mit.edu',
+  'Yehudhah Rodriguez',
+  'mailto:yehudhah.rodriguez@yachaytech.edu.ec',
 ]) {
   assert(html.includes(contentMarker), 'Missing compact-content marker: ' + contentMarker);
 }

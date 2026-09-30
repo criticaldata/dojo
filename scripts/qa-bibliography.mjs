@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises';
 
 const html = await readFile('index.html', 'utf8');
 const teamSection = html.match(/<section id="team"[\s\S]*?<\/section>/)?.[0] ?? '';
+const contactSection = html.match(/<section id="contact"[\s\S]*?<\/section>/)?.[0] ?? '';
 
 const assert = (condition, message) => {
   if (!condition) {
@@ -65,4 +66,19 @@ assert(teamSection.includes('<h3>Isaac Gavilanes</h3>'), 'Isaac Gavilanes profil
 assert(teamSection.includes('https://scholar.google.com/citations?user=Ji1mE78AAAAJ&amp;hl=es&amp;authuser=1'), 'Isaac Gavilanes Google Scholar link is missing');
 assert(teamSection.includes('https://www.linkedin.com/in/ACoAAFCatZYBoY-ysMaO68JsqcT9DlFLV0vs3gc'), 'Isaac Gavilanes LinkedIn link is missing');
 assert(teamSection.indexOf('Isaac Gavilanes') < teamSection.indexOf('Julie CHASSERIAUD'), 'Multidisciplinary researchers are not alphabetized');
+
+assert(contactSection.includes('class="contact-people"'), 'Contact people list is missing');
+for (const contactMarker of [
+  'Leo Celi',
+  'mailto:lceli@mit.edu',
+  'lceli@mit.edu',
+  'Sebastian Cajas',
+  'mailto:asebasmos@mit.edu',
+  'asebasmos@mit.edu',
+  'Yehudhah Rodriguez',
+  'mailto:yehudhah.rodriguez@yachaytech.edu.ec',
+  'yehudhah.rodriguez@yachaytech.edu.ec',
+]) {
+  assert(contactSection.includes(contactMarker), `Missing contact marker: ${contactMarker}`);
+}
 console.log('PASS bibliography order, titles, URLs, and count assertions');
