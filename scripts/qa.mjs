@@ -34,7 +34,7 @@ for (const id of internalLinks) {
 assert(/<html\s+lang="en">/.test(html), 'Document language must be en');
 assert(/<meta\s+name="viewport"\s+content="width=device-width, initial-scale=1">/.test(html), 'Viewport meta tag is missing');
 assert(/<a\s+class="skip-link"\s+href="#main">/.test(html), 'Skip link is missing');
-assert((html.match(/<details\b/g) ?? []).length === 10, 'Bibliography should include ten expandable references after the DOJO paper');
+assert((html.match(/<details\b/g) ?? []).length === 13, 'Bibliography should include thirteen expandable references after the DOJO paper');
 
 for (const anchor of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) {
   assert(/rel="[^"]*noopener[^"]*noreferrer[^"]*"/.test(anchor[0]), 'Unsafe new-tab link: ' + anchor[0]);
@@ -74,8 +74,8 @@ for (const contentMarker of [
   'Model plane',
   'Clinical workflow',
   'Evidence object',
-  'DOJO bibliography',
-  'Articles behind the evaluation layer.',
+  'Selected publications from MIT Critical Data / DOJO',
+  'Research that informs the DOJO evaluation layer.',
   'Distributed Open Justice Oversight (DOJO): A Community-Driven, Modality-Agnostic Platform for Adversarial Evaluation of Health AI',
   'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6676818',
   'Agents Catching Agents: Shortcut Cascades and Benchmark Gaming in Clinical Multi-Agent Systems',
@@ -84,8 +84,26 @@ for (const contentMarker of [
   'https://arxiv.org/abs/2608.03744',
   'https://arxiv.org/abs/2609.15635',
   'https://arxiv.org/html/2609.10728',
-  'Machine learning in medicine',
-  'Foundation models for generalist medical artificial intelligence',
+  'Sources of bias in artificial intelligence that perpetuate healthcare disparities—A global review',
+  'Clinical artificial intelligence quality improvement: towards continual monitoring and updating of AI algorithms in healthcare',
+  'The myth of generalisability in clinical research and machine learning in health care',
+  'Assessing the potential of GPT-4 to perpetuate racial and gender biases in health care: a model evaluation study',
+  'Ethics of large language models in medicine and medical research',
+  'Leveraging electronic health records for data science: common pitfalls and how to avoid them',
+  'Equity in essence: a call for operationalising fairness in machine learning for healthcare',
+  'The reproducibility crisis in the age of digital medicine',
+  'The “inconvenient truth” about AI in healthcare',
+  'An embedded ethics approach for AI development',
+  'https://doi.org/10.1371/journal.pdig.0000022',
+  'https://doi.org/10.1038/s41746-022-00611-y',
+  'https://doi.org/10.1016/S2589-7500(20)30186-2',
+  'https://doi.org/10.1016/S2589-7500(23)00225-X',
+  'https://doi.org/10.1016/S2589-7500(23)00083-3',
+  'https://doi.org/10.1016/S2589-7500(22)00154-6',
+  'https://doi.org/10.1136/bmjhci-2020-100289',
+  'https://doi.org/10.1038/s41746-019-0079-z',
+  'https://doi.org/10.1038/s41746-019-0155-4',
+  'https://doi.org/10.1038/s42256-020-0214-1',
 ]) {
   assert(html.includes(contentMarker), 'Missing compact-content marker: ' + contentMarker);
 }
@@ -188,7 +206,7 @@ try {
   assert(pageState.sections.join('|') === expectedSections.join('|'), 'Browser section order assertion failed');
   assert(new Set(pageState.ids).size === pageState.ids.length, 'Browser IDs are not unique');
   assert(pageState.internalLinks.every((id) => pageState.ids.includes(id)), 'Browser found a broken internal anchor');
-  assert(pageState.details === 10, 'Browser bibliography reference count failed');
+  assert(pageState.details === 13, 'Browser bibliography reference count failed');
   assert(pageState.externalLinksSafe, 'Browser found an unsafe new-tab link');
   assert(pageState.scrollWidth <= pageState.clientWidth, 'Horizontal overflow at 320px: ' + pageState.scrollWidth + 'px');
   console.log('PASS browser structure and 320px overflow assertions');
